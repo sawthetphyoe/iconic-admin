@@ -32,7 +32,7 @@ const SideNavMenuItem = ({
   if (typeof item === "string") {
     const active = pathname.includes(generateHref(item, parentLink));
     return (
-      <li>
+      <li className={"text-base"}>
         <Link
           className={active ? "active" : ""}
           href={"/" + generateHref(item, parentLink)}
@@ -46,7 +46,7 @@ const SideNavMenuItem = ({
   return (
     <li>
       <details open={pathname.includes(generateHref(item.parent))}>
-        <summary>{item.parent}</summary>
+        <summary className={"text-base"}>{item.parent}</summary>
         <ul className="menu w-full flex flex-col gap-1">
           {item.children.map((child, index) => (
             <SideNavMenuItem
@@ -64,8 +64,8 @@ const SideNavMenuItem = ({
 const SideNavMenu: React.FC<SideNavMenuProps> = ({ items }) => {
   return (
     <aside className={"min-h-screen bg-base-100 w-80"}>
-      <div className={"flex items-center justify-center h-20"}>
-        <h1>LOGO</h1>
+      <div className={"flex items-center justify-center h-24"}>
+        <h1 className={"font-bold"}>LOGO</h1>
       </div>
       <ul className="menu w-full flex flex-col gap-2">
         {items.map((item, index) => (

@@ -1,13 +1,12 @@
 import React from "react";
 import MainLayout from "@/components/MainLayout";
-import StaffTable from "@/components/StaffTable";
 
-const StaffPage: React.FC = () => {
+const MyProfilePage: React.FC = () => {
   return (
     <MainLayout>
-      <StaffTable />
+      <h1>My Profile</h1>
     </MainLayout>
   );
 };
 
-export default StaffPage;
+export default MyProfilePage;

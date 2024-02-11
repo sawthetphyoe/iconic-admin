@@ -1,6 +1,6 @@
 import React from "react";
-import SideNavMenu from "@/app/components/SideNavMenu";
-import NavBar from "@/app/components/NavBar";
+import SideNavMenu from "@/components/SideNavMenu";
+import NavBar from "@/components/NavBar";
 
 const MainLayout: React.FC<{ children: React.ReactNode; title?: string }> = ({
   children,
@@ -18,7 +18,7 @@ const MainLayout: React.FC<{ children: React.ReactNode; title?: string }> = ({
           "Products",
           "Inventory",
           "Orders",
-          "General Settings",
+          "Settings",
         ]}
       />
       <main className={"flex flex-col w-full"}>

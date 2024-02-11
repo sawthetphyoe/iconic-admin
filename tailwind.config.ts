@@ -13,9 +13,6 @@ const config: Config = {
       //   "gradient-conic":
       //     "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       // },
-      boxShadow: {
-        normal: "0px 4px 16px 0px rgba(0, 0, 0, 0.04)",
-      },
       fontFamily: {
         poppins: ["var(--font-poppins)"],
       },
@@ -24,8 +21,8 @@ const config: Config = {
   plugins: [require("daisyui")],
   // daisyUI config (optional - here are the default values)
   daisyui: {
-    themes: ["emerald", "night"], // false: only light + dark | true: all themes | array: specific themes like this ["light", "dark", "cupcake"]
-    darkTheme: ["emerald", "night"], // name of one of the included themes for dark mode
+    themes: ["emerald", "business", "night"], // false: only light + dark | true: all themes | array: specific themes like this ["light", "dark", "cupcake"]
+    darkTheme: ["emerald", "business", "night"], // name of one of the included themes for dark mode
     base: true, // applies background color and foreground color for root element by default
     styled: true, // include daisyUI colors and design decisions for all components
     utils: true, // adds responsive and modifier utility classes

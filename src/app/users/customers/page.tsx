@@ -1,5 +1,5 @@
 import React from "react";
-import MainLayout from "@/app/components/MainLayout";
+import MainLayout from "@/components/MainLayout";
 
 const CustomersPage: React.FC = () => {
   return <MainLayout>Customers</MainLayout>;
