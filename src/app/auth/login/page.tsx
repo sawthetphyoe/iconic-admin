@@ -7,10 +7,10 @@ const LoginPage = () => {
     <main className={"w-full min-h-[800px] h-screen relative"}>
       <NavBar className={"px-6"} />
 
-      <div className={"flex flex-col gap-8 items-center w-full mt-40"}>
-        <h1 className={"text-secondary font-bold text-2xl m-0"}>Login</h1>
+      <section className={"flex flex-col gap-8 items-center w-full mt-40"}>
+        <h1 className={"text-primary font-bold text-2xl m-0"}>Login</h1>
         <LoginForm />
-      </div>
+      </section>
 
       <LoginFooter />
     </main>

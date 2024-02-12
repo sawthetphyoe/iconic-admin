@@ -68,9 +68,9 @@ const SideNavMenu: React.FC<SideNavMenuProps> = ({ items }) => {
         "min-h-screen border-r border-r-slate-500 border-opacity-10 pr-4 bg-base-100 w-80"
       }
     >
-      <div className={"flex items-center justify-center h-24"}>
+      <Link href={"/"} className={"flex items-center justify-center h-24"}>
         <h1 className={"font-bold"}>LOGO</h1>
-      </div>
+      </Link>
       <ul className="menu w-full flex flex-col gap-2">
         {items.map((item, index) => (
           <SideNavMenuItem key={index} item={item} />

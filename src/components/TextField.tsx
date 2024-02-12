@@ -53,7 +53,7 @@ function TextField<T>({
         id={name}
         name={name}
         className={mergeClassNames(
-          "input input-bordered input-secondary w-full",
+          "input input-bordered input-primary w-full",
           className,
         )}
         {...props}

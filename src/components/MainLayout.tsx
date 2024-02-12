@@ -1,13 +1,14 @@
 import React from "react";
 import SideNavMenu from "@/components/SideNavMenu";
 import NavBar from "@/components/NavBar";
+import mergeClassNames from "@/utils/mergeClassnames";
 
-const MainLayout: React.FC<{ children: React.ReactNode; title?: string }> = ({
+const MainLayout: React.FC<React.HTMLProps<HTMLDivElement>> = ({
   children,
-  title,
+  className,
 }) => {
   return (
-    <div className={"flex items-start"}>
+    <div className={mergeClassNames("flex items-start", className)}>
       <SideNavMenu
         items={[
           {
@@ -22,7 +23,7 @@ const MainLayout: React.FC<{ children: React.ReactNode; title?: string }> = ({
         ]}
       />
       <main className={"flex flex-col w-full"}>
-        <NavBar title={title} />
+        <NavBar />
         <section className={"!px-4 !py-8"}>{children}</section>
       </main>
     </div>

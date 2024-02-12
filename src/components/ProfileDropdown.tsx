@@ -22,7 +22,7 @@ const ProfileDropdown: React.FC = () => {
             Profile
           </Link>
         </li>
-        <hr className={"opacity-80 bg-secondary"} />
+        <hr className={"opacity-80 bg-primary"} />
         <li>
           <Link href={"/auth/login"} className={"text-base font-medium"}>
             Logout

@@ -61,7 +61,7 @@ const LoginForm: React.FC = () => {
             },
           }}
         />
-        <button type={"submit"} className="btn btn-secondary w-full">
+        <button type={"submit"} className="btn btn-primary w-full">
           Login
         </button>
       </form>

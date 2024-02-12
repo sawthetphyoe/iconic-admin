@@ -1,37 +1,30 @@
 import React from "react";
 import ThemeController from "@/components/ThemeController";
 import ProfileDropdown from "@/components/ProfileDropdown";
+import mergeClassNames from "@/utils/mergeClassnames";
 
-const NavBar: React.FC<{ title?: React.ReactNode; className?: string }> = ({
-  title,
+const NavBar: React.FC<React.HTMLProps<HTMLDivElement>> = ({
   className,
+  ...props
 }) => {
   return (
     <div
-      className={`navbar w-full border-b border-b-slate-500 shadow-sm border-opacity-10 py-0 ${
-        className || ""
-      }`}
+      className={mergeClassNames(
+        "navbar w-full border-b border-b-slate-500 shadow-sm border-opacity-10 py-0",
+        className,
+      )}
+      {...props}
     >
       <div className="navbar-start">
-        <h1 className={"menu-title text-secondary font-semibold text-xl !py-4"}>
-          {title ? (
-            title
-          ) : (
-            <>
-              <span className={"text-2xl font-bold"}>i</span>
-              <span>CONIC Admin Dashboard</span>{" "}
-            </>
-          )}
+        <h1 className={"menu-title text-primary font-semibold text-xl !py-4"}>
+          <span className={"text-xl font-bold"}>i</span>
+          <span>CONIC Admin Dashboard</span>
         </h1>
       </div>
 
-      <div className="navbar-end">
-        <div className={"flex items-center gap-3 px-4"}>
-          <ProfileDropdown />
-          <button className="btn btn-ghost btn-circle">
-            <ThemeController />
-          </button>
-        </div>
+      <div className="navbar-end flex items-center gap-3 px-4">
+        <ProfileDropdown />
+        <ThemeController />
       </div>
     </div>
   );
