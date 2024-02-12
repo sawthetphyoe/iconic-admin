@@ -4,7 +4,7 @@ import "./globals.css";
 import React from "react";
 import { cookies } from "next/headers";
 import { getCookie } from "cookies-next";
-import { LIGHT_THEME } from "@/app/lib/constants";
+import { LIGHT_THEME } from "@/lib/constants";
 
 // const inter = Inter({ subsets: ["latin"] });
 

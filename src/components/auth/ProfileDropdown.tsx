@@ -2,7 +2,6 @@ import React from "react";
 import Link from "next/link";
 
 const ProfileDropdown: React.FC = () => {
-  // return null;
   return (
     <div className="dropdown dropdown-end dropdown-hover">
       <div className={"flex items-center gap-3 cursor-pointer h-full"}>

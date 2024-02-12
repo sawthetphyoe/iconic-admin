@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Table, { TableColumn } from "@/components/Table";
+import Table, { TableColumn } from "@/components/common/Table";
 import { useRouter } from "next/navigation";
 
 type TableDataType = {

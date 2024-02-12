@@ -1,6 +1,6 @@
 import React from "react";
-import SideNavMenu from "@/components/SideNavMenu";
-import NavBar from "@/components/NavBar";
+import SideNavMenu from "@/components/layout/SideNavMenu";
+import NavBar from "@/components/layout/NavBar";
 import mergeClassNames from "@/utils/mergeClassnames";
 
 const MainLayout: React.FC<React.HTMLProps<HTMLDivElement>> = ({

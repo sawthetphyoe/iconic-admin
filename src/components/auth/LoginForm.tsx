@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { FormProvider, useForm } from "react-hook-form";
-import TextField from "@/components/TextField";
+import TextField from "@/components/common/TextField";
 
 type LoginFormField = {
   username: string;

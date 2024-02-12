@@ -1,6 +1,6 @@
-import LoginForm from "@/components/LoginForm";
-import NavBar from "@/components/NavBar";
-import LoginFooter from "@/components/LoginFooter";
+import LoginForm from "@/components/auth/LoginForm";
+import NavBar from "@/components/layout/NavBar";
+import LoginFooter from "@/components/auth/LoginFooter";
 
 const LoginPage = () => {
   return (

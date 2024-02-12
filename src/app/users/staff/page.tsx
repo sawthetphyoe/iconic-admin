@@ -1,6 +1,6 @@
 import React from "react";
-import MainLayout from "@/components/MainLayout";
-import StaffTable from "@/components/StaffTable";
+import MainLayout from "@/components/layout/MainLayout";
+import StaffTable from "@/components/users/StaffTable";
 
 const StaffPage: React.FC = () => {
   return (

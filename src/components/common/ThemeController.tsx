@@ -3,7 +3,7 @@
 import React from "react";
 import { getCookie, hasCookie, setCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
-import { DARK_THEME, LIGHT_THEME } from "@/app/lib/constants";
+import { DARK_THEME, LIGHT_THEME } from "@/lib/constants";
 
 const ThemeController: React.FC = () => {
   const router = useRouter();

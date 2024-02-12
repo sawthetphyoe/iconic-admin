@@ -1,6 +1,6 @@
 import React from "react";
-import ThemeController from "@/components/ThemeController";
-import ProfileDropdown from "@/components/ProfileDropdown";
+import ThemeController from "@/components/common/ThemeController";
+import ProfileDropdown from "@/components/auth/ProfileDropdown";
 import mergeClassNames from "@/utils/mergeClassnames";
 
 const NavBar: React.FC<React.HTMLProps<HTMLDivElement>> = ({
