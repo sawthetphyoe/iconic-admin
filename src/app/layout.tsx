@@ -6,6 +6,9 @@ import { cookies } from "next/headers";
 import { getCookie } from "cookies-next";
 import { LIGHT_THEME } from "@/lib/constants";
 import QueryWrapper from "@/components/context/QueryWrapper";
+import "react-toastify/dist/ReactToastify.css";
+import StoreProvider from "@/components/context/StoreProvider";
+import ToastWrapper from "@/components/context/ToastWrapper";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -27,7 +30,11 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme={getCookie("theme", { cookies }) || LIGHT_THEME}>
       <QueryWrapper>
-        <body className={`${poppins.variable}`}>{children}</body>
+        <StoreProvider>
+          <ToastWrapper>
+            <body className={`${poppins.variable}`}>{children}</body>
+          </ToastWrapper>
+        </StoreProvider>
       </QueryWrapper>
     </html>
   );

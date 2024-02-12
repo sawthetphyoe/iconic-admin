@@ -6,6 +6,9 @@ import { FormProvider, useForm } from "react-hook-form";
 import TextField from "@/components/common/TextField";
 import useAuthLogin from "@/hooks/useAuthLogin";
 import { deleteCookie, hasCookie, setCookie } from "cookies-next";
+import { useDispatch } from "react-redux";
+import { removeUser, setUser } from "@/store";
+import { toast } from "react-toastify";
 
 type LoginFormField = {
   username: string;
@@ -14,6 +17,7 @@ type LoginFormField = {
 
 const LoginForm: React.FC = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
   const methods = useForm({
     mode: "onChange",
   });
@@ -26,22 +30,30 @@ const LoginForm: React.FC = () => {
   const AuthLoginMutation = useAuthLogin();
 
   useEffect(() => {
+    dispatch(removeUser());
     deleteCookie("accessToken");
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (AuthLoginMutation.isSuccess) {
-      console.log("Login success", AuthLoginMutation.data);
       setCookie("accessToken", AuthLoginMutation.data.payload.accessToken);
+      dispatch(setUser(AuthLoginMutation.data.payload));
       hasCookie("accessToken") && router.replace("/");
-    } else {
-      console.log("Login failed", AuthLoginMutation.error);
+    } else if (AuthLoginMutation.isError) {
+      const errorMessage =
+        (typeof AuthLoginMutation.error.data?.message === "string"
+          ? AuthLoginMutation.error.data?.message
+          : AuthLoginMutation.error.data?.message[0]) ||
+        AuthLoginMutation.error.message;
+      toast.error(errorMessage);
     }
   }, [
     AuthLoginMutation.isSuccess,
     AuthLoginMutation.error,
+    AuthLoginMutation.isError,
     AuthLoginMutation.data,
     router,
+    dispatch,
   ]);
 
   const handleLogin = () => {

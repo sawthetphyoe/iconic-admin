@@ -6,10 +6,7 @@ import { AxiosError } from "axios";
 
 type ErrorPayload = {
   success: boolean;
-  payload: {
-    type: string;
-    messages: string[];
-  };
+  message: string | string[];
   issueAt: string;
 };
 
