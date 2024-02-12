@@ -1,9 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { FormProvider, useForm } from "react-hook-form";
 import TextField from "@/components/common/TextField";
+import useAuthLogin from "@/hooks/useAuthLogin";
+import { deleteCookie, hasCookie, setCookie } from "cookies-next";
 
 type LoginFormField = {
   username: string;
@@ -21,8 +23,29 @@ const LoginForm: React.FC = () => {
     password: "",
   });
 
+  const AuthLoginMutation = useAuthLogin();
+
+  useEffect(() => {
+    deleteCookie("accessToken");
+  }, []);
+
+  useEffect(() => {
+    if (AuthLoginMutation.isSuccess) {
+      console.log("Login success", AuthLoginMutation.data);
+      setCookie("accessToken", AuthLoginMutation.data.payload.accessToken);
+      hasCookie("accessToken") && router.replace("/");
+    } else {
+      console.log("Login failed", AuthLoginMutation.error);
+    }
+  }, [
+    AuthLoginMutation.isSuccess,
+    AuthLoginMutation.error,
+    AuthLoginMutation.data,
+    router,
+  ]);
+
   const handleLogin = () => {
-    router.push("/");
+    AuthLoginMutation.mutate(loginForm);
   };
 
   return (
@@ -61,8 +84,16 @@ const LoginForm: React.FC = () => {
             },
           }}
         />
-        <button type={"submit"} className="btn btn-primary w-full">
-          Login
+        <button
+          type={"submit"}
+          className="btn btn-primary w-full"
+          disabled={AuthLoginMutation.isPending}
+        >
+          {AuthLoginMutation.isPending ? (
+            <span className="loading loading-dots loading-md"></span>
+          ) : (
+            "Login"
+          )}
         </button>
       </form>
     </FormProvider>

@@ -5,8 +5,7 @@ import React from "react";
 import { cookies } from "next/headers";
 import { getCookie } from "cookies-next";
 import { LIGHT_THEME } from "@/lib/constants";
-
-// const inter = Inter({ subsets: ["latin"] });
+import QueryWrapper from "@/components/context/QueryWrapper";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -17,7 +16,7 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: "Admin Dashboard | iCONIC",
-  description: "iCONIC Admin Dashboard for managing the eCommerce store",
+  description: "Admin Dashboard for managing the iCONIC Apple Products Store",
 };
 
 export default function RootLayout({
@@ -27,7 +26,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" data-theme={getCookie("theme", { cookies }) || LIGHT_THEME}>
-      <body className={`${poppins.variable}`}>{children}</body>
+      <QueryWrapper>
+        <body className={`${poppins.variable}`}>{children}</body>
+      </QueryWrapper>
     </html>
   );
 }

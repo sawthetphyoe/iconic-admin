@@ -27,10 +27,10 @@ const SideNavMenuItem = ({
   item: MenuItem;
   parentLink?: string;
 }) => {
-  const pathname = headers().get("x-pathname")!;
+  const pathname = headers().get("x-pathname");
 
   if (typeof item === "string") {
-    const active = pathname.includes(generateHref(item, parentLink));
+    const active = pathname?.includes(generateHref(item, parentLink));
     return (
       <li className={"text-base"}>
         <Link
@@ -45,7 +45,7 @@ const SideNavMenuItem = ({
 
   return (
     <li>
-      <details open={pathname.includes(generateHref(item.parent))}>
+      <details open={pathname?.includes(generateHref(item.parent))}>
         <summary className={"text-base"}>{item.parent}</summary>
         <ul className="menu w-full flex flex-col gap-1">
           {item.children.map((child, index) => (
