@@ -1,24 +1,46 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
-import { useSelector } from "react-redux";
-import { selectUser } from "@/store";
+import { useDispatch, useSelector } from "react-redux";
+import { selectUser, setUser } from "@/store";
+import { getCookie } from "cookies-next";
+import useGetCurrentUser from "@/hooks/useGetCurrentUser";
+import { toast } from "react-toastify";
 
 const ProfileDropdown: React.FC = () => {
+  const dispatch = useDispatch();
   const currentUser = useSelector(selectUser);
+  const accessToken = getCookie("accessToken");
 
-  if (!currentUser.id) return null;
+  const GetCurrentUserQuery = useGetCurrentUser(currentUser, accessToken);
+
+  useEffect(() => {
+    if (GetCurrentUserQuery.isSuccess && GetCurrentUserQuery.data) {
+      dispatch(setUser(GetCurrentUserQuery.data.payload));
+    }
+  }, [GetCurrentUserQuery.isSuccess, GetCurrentUserQuery.data, dispatch]);
+
+  if (!accessToken) return null;
+
+  if (GetCurrentUserQuery.isPending) return null;
+
+  if (GetCurrentUserQuery.isError) {
+    toast.error("Cannot fetch user data");
+    return null;
+  }
+
+  console.log(currentUser);
 
   return (
     <div className="dropdown dropdown-end dropdown-hover">
       <div className={"flex items-center gap-3 cursor-pointer h-full"}>
         <div className="avatar placeholder">
-          <div className="bg-neutral text-neutral-content rounded-full w-10">
-            <span>A</span>
+          <div className="bg-neutral text-neutral-content rounded-full w-9">
+            <span>{currentUser.fullName?.charAt(0)}</span>
           </div>
         </div>
-        <h1 className={"text-lg font-medium my-6"}>Admin</h1>
+        <h1 className={"text-lg font-medium my-6"}>{currentUser.fullName}</h1>
       </div>
       <ul
         tabIndex={0}

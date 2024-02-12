@@ -37,7 +37,6 @@ const LoginForm: React.FC = () => {
   useEffect(() => {
     if (AuthLoginMutation.isSuccess) {
       setCookie("accessToken", AuthLoginMutation.data.payload.accessToken);
-      dispatch(setUser(AuthLoginMutation.data.payload));
       hasCookie("accessToken") && router.replace("/");
     } else if (AuthLoginMutation.isError) {
       const errorMessage =

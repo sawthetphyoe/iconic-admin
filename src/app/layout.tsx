@@ -31,9 +31,9 @@ export default function RootLayout({
     <html lang="en" data-theme={getCookie("theme", { cookies }) || LIGHT_THEME}>
       <QueryWrapper>
         <StoreProvider>
-          <ToastWrapper>
-            <body className={`${poppins.variable}`}>{children}</body>
-          </ToastWrapper>
+          <body className={`${poppins.variable}`}>
+            <ToastWrapper>{children}</ToastWrapper>
+          </body>
         </StoreProvider>
       </QueryWrapper>
     </html>

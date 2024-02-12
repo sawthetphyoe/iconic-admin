@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "@/store";
-import { AuthLoginResponse } from "@/types/auth.types";
+import { CurrentUserResponse } from "@/types/auth.types";
 
-type CurrentUserStoreType = AuthLoginResponse["payload"];
+type CurrentUserStoreType = CurrentUserResponse["payload"];
 
 type PayloadType = CurrentUserStoreType;
 
@@ -17,14 +17,12 @@ export const currentUserSlice = createSlice({
       state.username = action.payload.username;
       state.fullName = action.payload.fullName;
       state.role = action.payload.role;
-      state.accessToken = action.payload.accessToken;
     },
     removeUser: (state) => {
       state.id = undefined;
       state.username = undefined;
       state.fullName = undefined;
       state.role = undefined;
-      state.accessToken = undefined;
     },
   },
 });
