@@ -4,7 +4,7 @@ import LoginFooter from "@/components/LoginFooter";
 
 const LoginPage = () => {
   return (
-    <main className={"w-full min-h-screen relative"}>
+    <main className={"w-full min-h-[800px] h-screen relative"}>
       <NavBar className={"px-6"} />
 
       <div className={"flex flex-col gap-8 items-center w-full mt-40"}>

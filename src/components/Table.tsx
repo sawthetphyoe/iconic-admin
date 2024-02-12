@@ -32,9 +32,11 @@ function Table<T extends Record<string, any>>({
       <table className={`table ${className}`}>
         {/* head */}
         <thead>
-          <tr className={titleClassname || ""}>
+          <tr>
             {columns.map((column, index) => (
-              <th key={index}>{column.title}</th>
+              <th key={index} className={titleClassname || ""}>
+                {column.title}
+              </th>
             ))}
           </tr>
         </thead>

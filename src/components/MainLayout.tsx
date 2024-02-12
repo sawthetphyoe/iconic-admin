@@ -23,7 +23,7 @@ const MainLayout: React.FC<{ children: React.ReactNode; title?: string }> = ({
       />
       <main className={"flex flex-col w-full"}>
         <NavBar title={title} />
-        <section className={"!p-4"}>{children}</section>
+        <section className={"!px-4 !py-8"}>{children}</section>
       </main>
     </div>
   );

@@ -7,7 +7,11 @@ const NavBar: React.FC<{ title?: React.ReactNode; className?: string }> = ({
   className,
 }) => {
   return (
-    <div className={`navbar w-full shadow-sm py-0 ${className || ""}`}>
+    <div
+      className={`navbar w-full border-b border-b-slate-500 shadow-sm border-opacity-10 py-0 ${
+        className || ""
+      }`}
+    >
       <div className="navbar-start">
         <h1 className={"menu-title text-secondary font-semibold text-xl !py-4"}>
           {title ? (

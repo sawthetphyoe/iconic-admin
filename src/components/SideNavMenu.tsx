@@ -63,7 +63,11 @@ const SideNavMenuItem = ({
 
 const SideNavMenu: React.FC<SideNavMenuProps> = ({ items }) => {
   return (
-    <aside className={"min-h-screen bg-base-100 w-80"}>
+    <aside
+      className={
+        "min-h-screen border-r border-r-slate-500 border-opacity-10 pr-4 bg-base-100 w-80"
+      }
+    >
       <div className={"flex items-center justify-center h-24"}>
         <h1 className={"font-bold"}>LOGO</h1>
       </div>
