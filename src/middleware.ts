@@ -5,9 +5,17 @@ export function middleware(request: NextRequest) {
   const isAuth = hasCookie("iconic-access-token", { req: request });
 
   if (isAuth) {
-    return NextResponse.next();
+    return NextResponse.next({
+      headers: {
+        "Content-Security-Policy": "upgrade-insecure-requests",
+      },
+    });
   } else {
-    return NextResponse.redirect(new URL(`/auth/login`, request.url));
+    return NextResponse.redirect(new URL(`/auth/login`, request.url), {
+      headers: {
+        "Content-Security-Policy": "upgrade-insecure-requests",
+      },
+    });
   }
 }
 
