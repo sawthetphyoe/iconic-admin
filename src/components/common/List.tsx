@@ -1,4 +1,5 @@
 import React from "react";
+import mergeClassNames from "@/utils/mergeClassnames";
 
 const ListItem: React.FC<{ label: string; value: string }> = ({
   label,
@@ -20,7 +21,7 @@ interface ListCompoundProps extends React.FC<ListProps> {
 }
 
 const List: ListCompoundProps = ({ children, className }) => {
-  return <ul className={className || ""}>{children}</ul>;
+  return <ul className={mergeClassNames(className)}>{children}</ul>;
 };
 
 List.Item = ListItem;

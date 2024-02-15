@@ -6,12 +6,15 @@ import { StaffDto } from "@/types/staff.types";
 import dayjs from "dayjs";
 import getDisplayRole from "@/utils/getDisplayRole";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
+import { usePathname, useRouter } from "next/navigation";
 
 type StaffTableProps = {
   dataSource: StaffDto[];
 };
 
 const StaffTable: React.FC<StaffTableProps> = ({ dataSource }) => {
+  const router = useRouter();
+  const pathname = usePathname();
   const columns: TableColumn<StaffDto>[] = [
     {
       title: "No.",
@@ -67,7 +70,7 @@ const StaffTable: React.FC<StaffTableProps> = ({ dataSource }) => {
       titleClassname={"text-sm font-semibold"}
       rowClassname={"cursor-pointer"}
       onRowClick={(record) => {
-        console.log(record);
+        router.push(`${pathname}/${record.id}`);
       }}
     />
   );

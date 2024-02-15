@@ -1,13 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
-import MainLayout from "@/components/layout/MainLayout";
-import StaffTable from "@/components/users/staff/StaffTable";
 import { SearchStaffRequestDto } from "@/types/staff.types";
 import useSearchStaff from "@/hooks/staff/useSearchStaff";
 import LoadingPage from "@/app/loading";
 import ErrorPage from "@/app/error";
+import MainLayout from "@/components/layout/MainLayout";
 import CreateStaffModal from "@/components/users/staff/CreateStaffModal";
+import StaffTable from "@/components/users/staff/StaffTable";
 
 const StaffPage: React.FC = () => {
   const [staffFilterData, setStaffFilterData] = useState<
