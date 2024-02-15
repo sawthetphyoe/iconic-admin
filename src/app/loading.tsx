@@ -1,7 +1,7 @@
 import React from "react";
 import MainLayout from "@/components/layout/MainLayout";
 
-const ServerLoading: React.FC = () => {
+const LoadingPage: React.FC = () => {
   return (
     <MainLayout>
       <div
@@ -19,4 +19,4 @@ const ServerLoading: React.FC = () => {
   );
 };
 
-export default ServerLoading;
+export default LoadingPage;

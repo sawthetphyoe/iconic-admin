@@ -4,11 +4,12 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { FormProvider, useForm } from "react-hook-form";
 import TextField from "@/components/common/TextField";
-import useAuthLogin from "@/hooks/useAuthLogin";
+import useAuthLogin from "@/hooks/auth/useAuthLogin";
 import { deleteCookie, hasCookie, setCookie } from "cookies-next";
 import { useDispatch } from "react-redux";
-import { removeUser, setUser } from "@/store";
+import { removeUser } from "@/store";
 import { toast } from "react-toastify";
+import getMutationErrorMessage from "@/utils/getMutationErrorMessage";
 
 type LoginFormField = {
   username: string;
@@ -31,28 +32,26 @@ const LoginForm: React.FC = () => {
 
   useEffect(() => {
     dispatch(removeUser());
-    deleteCookie("accessToken");
+    deleteCookie("iconic-access-token");
   }, [dispatch]);
 
   useEffect(() => {
     if (AuthLoginMutation.isSuccess) {
-      setCookie("accessToken", AuthLoginMutation.data.payload.accessToken);
-      hasCookie("accessToken") && router.replace("/");
+      setCookie(
+        "iconic-access-token",
+        AuthLoginMutation.data.payload.accessToken
+      );
+      hasCookie("iconic-access-token") && router.replace("/");
     } else if (AuthLoginMutation.isError) {
-      const errorMessage =
-        (typeof AuthLoginMutation.error.data?.message === "string"
-          ? AuthLoginMutation.error.data?.message
-          : AuthLoginMutation.error.data?.message[0]) ||
-        AuthLoginMutation.error.message;
-      toast.error(errorMessage);
+      toast.error(getMutationErrorMessage(AuthLoginMutation.error));
     }
   }, [
     AuthLoginMutation.isSuccess,
     AuthLoginMutation.error,
     AuthLoginMutation.isError,
     AuthLoginMutation.data,
-    router,
-    dispatch,
+    // router,
+    // dispatch,
   ]);
 
   const handleLogin = () => {
@@ -70,7 +69,10 @@ const LoginForm: React.FC = () => {
           value={loginForm.username}
           placeholder="Enter username or email"
           onFieldChange={(value) => {
-            setLoginForm((oldState) => ({ ...oldState, username: value }));
+            setLoginForm((oldState) => ({
+              ...oldState,
+              username: value,
+            }));
           }}
           rules={{
             required: {
@@ -86,7 +88,10 @@ const LoginForm: React.FC = () => {
           placeholder={"Enter your password"}
           value={loginForm.password}
           onFieldChange={(value) => {
-            setLoginForm((oldState) => ({ ...oldState, password: value }));
+            setLoginForm((oldState) => ({
+              ...oldState,
+              password: value,
+            }));
           }}
           rules={{
             required: {
@@ -98,9 +103,9 @@ const LoginForm: React.FC = () => {
         <button
           type={"submit"}
           className="btn btn-primary w-full"
-          disabled={AuthLoginMutation.isPending}
+          disabled={!!(AuthLoginMutation.isPending || AuthLoginMutation.data)}
         >
-          {AuthLoginMutation.isPending ? (
+          {AuthLoginMutation.isPending || AuthLoginMutation.data ? (
             <span className="loading loading-dots loading-md"></span>
           ) : (
             "Login"

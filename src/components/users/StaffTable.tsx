@@ -37,7 +37,7 @@ const StaffTable: React.FC = () => {
     {
       title: "Name",
       dataIndex: "name",
-      render: (value) => {
+      render: (value, t) => {
         return <p>{value}</p>;
       },
     },

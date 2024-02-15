@@ -1,5 +1,5 @@
-import axios from "axios";
-import { getCookie, hasCookie } from "cookies-next";
+import axios, { AxiosResponse } from "axios";
+import { deleteCookie, getCookie, hasCookie } from "cookies-next";
 
 const Axios = axios.create();
 
@@ -10,8 +10,8 @@ Axios.defaults.headers.post["Accept"] = "application/json";
 // Add Authorization header in all requests
 Axios.interceptors.request.use(
   (config) => {
-    if (hasCookie("accessToken")) {
-      config.headers["Authorization"] = getCookie("accessToken");
+    if (hasCookie("iconic-access-token")) {
+      config.headers["Authorization"] = getCookie("iconic-access-token");
     }
     return config;
   },
@@ -24,6 +24,13 @@ Axios.interceptors.request.use(
 Axios.interceptors.response.use(
   (f) => f,
   async (error) => {
+    if (
+      error.response &&
+      (error.response.status === 401 || error.response.status === 403)
+    ) {
+      deleteCookie("iconic-access-token");
+      window.location.href = `${window.location.origin}/auth/login`;
+    }
     return Promise.reject({
       ...error,
       data: error.response?.data,

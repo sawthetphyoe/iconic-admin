@@ -5,6 +5,7 @@ import mergeClassNames from "@/utils/mergeClassnames";
 
 export type TableColumn<T> = {
   title: React.ReactNode;
+  width?: string;
   dataIndex: keyof T;
   render?: (value: any, record: T, index: number) => React.ReactNode;
 };
@@ -37,7 +38,11 @@ function Table<T extends Record<string, any>>({
             className={mergeClassNames("border-b-slate-500 border-opacity-20")}
           >
             {columns.map((column, index) => (
-              <th key={index} className={mergeClassNames(titleClassname)}>
+              <th
+                key={index}
+                className={mergeClassNames(titleClassname)}
+                style={{ width: column.width }}
+              >
                 {column.title}
               </th>
             ))}
@@ -50,7 +55,7 @@ function Table<T extends Record<string, any>>({
               key={i}
               className={mergeClassNames(
                 "hover border-b-slate-500 border-opacity-20",
-                rowClassname,
+                rowClassname
               )}
               onClick={() => {
                 onRowClick(record);

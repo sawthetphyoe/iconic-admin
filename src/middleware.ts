@@ -1,17 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
-import { deleteCookie, hasCookie } from "cookies-next";
+import { hasCookie } from "cookies-next";
 
-export function middleware(request: NextRequest, response: NextResponse) {
-  const requestHeaders = new Headers(request.headers);
-  requestHeaders.set("x-pathname", request.nextUrl.pathname);
-  const isAuth = hasCookie("accessToken", { req: request });
+export function middleware(request: NextRequest) {
+  const isAuth = hasCookie("iconic-access-token", { req: request });
 
   if (isAuth) {
-    return NextResponse.next({
-      request: {
-        headers: requestHeaders,
-      },
-    });
+    return NextResponse.next();
   } else {
     return NextResponse.redirect(new URL(`/auth/login`, request.url));
   }

@@ -24,7 +24,7 @@ const MainLayout: React.FC<React.HTMLProps<HTMLDivElement>> = ({
       />
       <main className={"flex flex-col w-full"}>
         <NavBar />
-        <section className={"!px-4 !py-8"}>{children}</section>
+        <section className={"!px-6 !py-6"}>{children}</section>
       </main>
     </div>
   );
