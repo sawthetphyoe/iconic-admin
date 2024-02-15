@@ -30,17 +30,22 @@ function Table<T extends Record<string, any>>({
   onRowClick = () => {},
 }: TableProps<T>): React.ReactNode {
   return (
-    <div className={mergeClassNames("overflow-x-auto", containerClassname)}>
-      <table className={mergeClassNames("table", className)}>
+    <div
+      className={mergeClassNames(
+        "!overflow-x-scroll !w-full",
+        containerClassname
+      )}
+    >
+      <table className={mergeClassNames("!w-full table", className)}>
         {/* head */}
-        <thead>
+        <thead className={"w-full"}>
           <tr
             className={mergeClassNames("border-b-slate-500 border-opacity-20")}
           >
             {columns.map((column, index) => (
               <th
                 key={index}
-                className={mergeClassNames(titleClassname)}
+                className={mergeClassNames("whitespace-nowrap", titleClassname)}
                 style={{ width: column.width }}
               >
                 {column.title}
@@ -49,7 +54,7 @@ function Table<T extends Record<string, any>>({
           </tr>
         </thead>
         {/* body */}
-        <tbody>
+        <tbody className={"w-full"}>
           {dataSource.map((record, i) => (
             <tr
               key={i}
@@ -62,7 +67,7 @@ function Table<T extends Record<string, any>>({
               }}
             >
               {columns.map((column, index) => (
-                <td key={index}>
+                <td key={index} className={"whitespace-nowrap"}>
                   {typeof column.render === "function"
                     ? column.render(record[column.dataIndex], record, i)
                     : record[column.dataIndex]}

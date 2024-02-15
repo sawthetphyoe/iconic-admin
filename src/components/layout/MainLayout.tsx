@@ -8,7 +8,7 @@ const MainLayout: React.FC<React.HTMLProps<HTMLDivElement>> = ({
   className,
 }) => {
   return (
-    <div className={mergeClassNames("flex items-start", className)}>
+    <div className={mergeClassNames("w-full flex", className)}>
       <SideNavMenu
         items={[
           {
@@ -22,9 +22,9 @@ const MainLayout: React.FC<React.HTMLProps<HTMLDivElement>> = ({
           "Settings",
         ]}
       />
-      <main className={"flex flex-col w-full"}>
+      <main className={"flex flex-col w-[calc(100%-16rem)]"}>
         <NavBar />
-        <section className={"!px-6 !py-6"}>{children}</section>
+        <section className={"!px-6 !py-6 w-full"}>{children}</section>
       </main>
     </div>
   );

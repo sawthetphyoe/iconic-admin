@@ -4,4 +4,5 @@ export const endpoints = Object.freeze({
     me: "/auth/staff/me",
   },
   branches: "/branches",
+  staff: "/staff",
 });

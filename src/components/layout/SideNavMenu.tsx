@@ -67,7 +67,7 @@ const SideNavMenu: React.FC<SideNavMenuProps> = ({ items }) => {
   return (
     <aside
       className={
-        "min-h-screen border-r border-r-slate-500 border-opacity-10 pr-4 bg-base-100 w-80 sticky top-0 bottom-0 left-0"
+        "min-h-screen border-r border-r-slate-500 border-opacity-10 pr-4 bg-base-100 w-64 sticky top-0 bottom-0 left-0"
       }
     >
       <Link href={"/"} className={"flex items-center justify-center h-24"}>

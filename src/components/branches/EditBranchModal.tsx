@@ -3,12 +3,14 @@
 import React, { useEffect, useState } from "react";
 import Modal from "@/components/common/Modal";
 import { MdModeEdit } from "react-icons/md";
-import { FormProvider, useForm } from "react-hook-form";
-import TextField from "@/components/common/TextField";
+import { useForm } from "react-hook-form";
 import { BranchDetailsResponseDto } from "@/types/branch.types";
 import useUpdateBranch from "@/hooks/branches/useUpdateBranch";
 import getMutationErrorMessage from "@/utils/getMutationErrorMessage";
 import { toast } from "react-toastify";
+import Form from "@/components/common/Form";
+
+const { TextField, SubmitButton } = Form;
 
 type EditBranchModalProps = {
   branch: BranchDetailsResponseDto["payload"];
@@ -73,56 +75,48 @@ const EditBranchModal: React.FC<EditBranchModalProps> = ({ branch }) => {
         methods.reset();
       }}
     >
-      <FormProvider {...methods}>
-        <form
-          className={"flex flex-col gap-3 w-full"}
-          onSubmit={methods.handleSubmit(handleSubmit)}
-        >
-          <TextField<BranchEditFormFields>
-            name={"branchName"}
-            value={branchEditForm.branchName}
-            placeholder="Enter branch name"
-            onFieldChange={(value) => {
-              setBranchEditForm((oldState) => ({
-                ...oldState,
-                branchName: value,
-              }));
-            }}
-            rules={{
-              required: {
-                value: true,
-                message: "Branch name is required",
-              },
-            }}
-          />
+      <Form
+        methods={methods}
+        className={"flex flex-col gap-3 w-full"}
+        onSubmit={handleSubmit}
+      >
+        <TextField<BranchEditFormFields>
+          name={"branchName"}
+          value={branchEditForm.branchName}
+          placeholder="Enter branch name"
+          onFieldChange={(value) => {
+            setBranchEditForm((oldState) => ({
+              ...oldState,
+              branchName: value,
+            }));
+          }}
+          rules={{
+            required: {
+              value: true,
+              message: "Branch name is required",
+            },
+          }}
+        />
 
-          <TextField<BranchEditFormFields>
-            name={"address"}
-            placeholder={"Enter address details"}
-            value={branchEditForm.address}
-            onFieldChange={(value) => {
-              setBranchEditForm((oldState) => ({
-                ...oldState,
-                address: value,
-              }));
-            }}
-            rules={{
-              required: {
-                value: true,
-                message: "Address is required",
-              },
-            }}
-          />
-          <button type={"submit"} className="btn btn-primary">
-            {/*{CreateNewBranchMutation.isPending ||*/}
-            {/*CreateNewBranchMutation.data ? (*/}
-            {/*  <span className="loading loading-dots loading-md"></span>*/}
-            {/*) : (*/}
-            Save
-            {/*)}*/}
-          </button>
-        </form>
-      </FormProvider>
+        <TextField<BranchEditFormFields>
+          name={"address"}
+          placeholder={"Enter address details"}
+          value={branchEditForm.address}
+          onFieldChange={(value) => {
+            setBranchEditForm((oldState) => ({
+              ...oldState,
+              address: value,
+            }));
+          }}
+          rules={{
+            required: {
+              value: true,
+              message: "Address is required",
+            },
+          }}
+        />
+        <SubmitButton>Save</SubmitButton>
+      </Form>
     </Modal>
   );
 };

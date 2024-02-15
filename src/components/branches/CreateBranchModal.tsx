@@ -2,12 +2,12 @@
 
 import Modal from "@/components/common/Modal";
 import React, { useEffect, useState } from "react";
-import TextField from "@/components/common/TextField";
-import { FormProvider, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { HiPlus } from "react-icons/hi";
 import useCreateNewBranch from "@/hooks/branches/useCreateNewBranch";
 import { toast } from "react-toastify";
 import getMutationErrorMessage from "@/utils/getMutationErrorMessage";
+import Form from "@/components/common/Form";
 
 type CreateBranchFormFields = {
   branchName: string;
@@ -18,6 +18,8 @@ const initialState: CreateBranchFormFields = {
   branchName: "",
   address: "",
 };
+
+const { TextField, SubmitButton } = Form;
 
 const CreateBranchModal: React.FC = () => {
   const methods = useForm({
@@ -65,56 +67,58 @@ const CreateBranchModal: React.FC = () => {
         methods.reset();
       }}
     >
-      <FormProvider {...methods}>
-        <form
-          className={"flex flex-col gap-3 w-full"}
-          onSubmit={methods.handleSubmit(handleSubmit)}
-        >
-          <TextField<CreateBranchFormFields>
-            name={"branchName"}
-            value={branchCreateForm.branchName}
-            placeholder="Enter branch name"
-            onFieldChange={(value) => {
-              setBranchCreateForm((oldState) => ({
-                ...oldState,
-                branchName: value,
-              }));
-            }}
-            rules={{
-              required: {
-                value: true,
-                message: "Branch name is required",
-              },
-            }}
-          />
+      <Form
+        methods={methods}
+        className={"flex flex-col gap-3 w-full"}
+        onSubmit={handleSubmit}
+      >
+        <TextField<CreateBranchFormFields>
+          required
+          label={"Name"}
+          name={"branchName"}
+          value={branchCreateForm.branchName}
+          placeholder="Enter branch name"
+          onFieldChange={(value) => {
+            setBranchCreateForm((oldState) => ({
+              ...oldState,
+              branchName: value,
+            }));
+          }}
+          rules={{
+            required: {
+              value: true,
+              message: "Branch name is required",
+            },
+          }}
+        />
 
-          <TextField<CreateBranchFormFields>
-            name={"address"}
-            placeholder={"Enter address details"}
-            value={branchCreateForm.address}
-            onFieldChange={(value) => {
-              setBranchCreateForm((oldState) => ({
-                ...oldState,
-                address: value,
-              }));
-            }}
-            rules={{
-              required: {
-                value: true,
-                message: "Address is required",
-              },
-            }}
-          />
-          <button type={"submit"} className="btn btn-primary">
-            {CreateNewBranchMutation.isPending ||
-            CreateNewBranchMutation.data ? (
-              <span className="loading loading-dots loading-md"></span>
-            ) : (
-              "Save"
-            )}
-          </button>
-        </form>
-      </FormProvider>
+        <TextField<CreateBranchFormFields>
+          required
+          label={"Address"}
+          name={"address"}
+          placeholder={"Enter address details"}
+          value={branchCreateForm.address}
+          onFieldChange={(value) => {
+            setBranchCreateForm((oldState) => ({
+              ...oldState,
+              address: value,
+            }));
+          }}
+          rules={{
+            required: {
+              value: true,
+              message: "Address is required",
+            },
+          }}
+        />
+        <SubmitButton
+          loading={
+            CreateNewBranchMutation.isPending || !!CreateNewBranchMutation.data
+          }
+        >
+          Save
+        </SubmitButton>
+      </Form>
     </Modal>
   );
 };

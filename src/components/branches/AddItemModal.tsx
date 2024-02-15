@@ -3,9 +3,9 @@
 import React, { useState } from "react";
 import Modal from "@/components/common/Modal";
 import { HiPlus } from "react-icons/hi";
-import { FormProvider, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { BranchDetailsResponseDto } from "@/types/branch.types";
-import Select from "@/components/common/Select";
+import Form from "@/components/common/Form";
 
 type AddItemModalProps = {
   branch: BranchDetailsResponseDto["payload"];
@@ -29,6 +29,8 @@ const initialAddItemForm: AddItemFormField = {
   productStorage: "",
 };
 
+const { Select, SubmitButton } = Form;
+
 const AddItemModal: React.FC<AddItemModalProps> = ({ branch }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [addItemFrom, setAddItemFrom] =
@@ -36,6 +38,13 @@ const AddItemModal: React.FC<AddItemModalProps> = ({ branch }) => {
   const methods = useForm({
     mode: "onChange",
   });
+
+  const onFieldChange = (key: keyof AddItemFormField, value: string) => {
+    setAddItemFrom((oldState) => ({
+      ...oldState,
+      [key]: value,
+    }));
+  };
 
   const handleSubmit = () => {
     console.log(addItemFrom);
@@ -59,50 +68,44 @@ const AddItemModal: React.FC<AddItemModalProps> = ({ branch }) => {
         setAddItemFrom(initialAddItemForm);
       }}
     >
-      <FormProvider {...methods}>
-        <form
-          className={"flex flex-col gap-3 w-full"}
-          onSubmit={methods.handleSubmit(handleSubmit)}
-        >
-          <Select<AddItemFormField>
-            options={[
-              {
-                value: "1",
-                label: "1",
-              },
-              {
-                value: "2",
-                label: "2",
-              },
-              {
-                value: "3",
-                label: "3",
-              },
-            ]}
-            name={"productId"}
-            value={addItemFrom.productId}
-            placeholder="Select product"
-            onFieldChange={(value) => {
-              setAddItemFrom((oldState) => ({
-                ...oldState,
-                productId: value,
-              }));
-            }}
-            rules={{
-              required: {
-                value: true,
-                message: "Product is required",
-              },
-            }}
-          />
+      <Form
+        methods={methods}
+        className={"flex flex-col gap-3 w-full"}
+        onSubmit={handleSubmit}
+      >
+        <Select<AddItemFormField>
+          required
+          name={"productId"}
+          label={"Product"}
+          placeholder="Select product"
+          value={addItemFrom.productId}
+          onFieldChange={(value) => onFieldChange("productId", value)}
+          rules={{
+            required: {
+              value: true,
+              message: "Product is required",
+            },
+          }}
+          options={[
+            {
+              value: "1",
+              label: "1",
+            },
+            {
+              value: "2",
+              label: "2",
+            },
+            {
+              value: "3",
+              label: "3",
+            },
+          ]}
+        />
 
-          {/*TODO : Add more required fields */}
+        {/*TODO : Add more required fields */}
 
-          <button type={"submit"} className="btn btn-primary">
-            Add
-          </button>
-        </form>
-      </FormProvider>
+        <SubmitButton>Add</SubmitButton>
+      </Form>
     </Modal>
   );
 };

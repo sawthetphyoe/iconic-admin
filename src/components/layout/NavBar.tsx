@@ -10,7 +10,7 @@ const NavBar: React.FC<React.HTMLProps<HTMLDivElement>> = ({
   return (
     <div
       className={mergeClassNames(
-        "navbar h-[76px] w-full border-b border-b-slate-500 shadow-sm border-opacity-10 py-0 sticky top-0 right-0 bg-base-100",
+        "navbar h-[76px] w-full border-b border-b-slate-500 shadow-sm border-opacity-10 py-0 sticky z-10 top-0 right-0 bg-base-100",
         className
       )}
       {...props}

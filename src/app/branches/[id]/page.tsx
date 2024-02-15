@@ -5,7 +5,7 @@ import MainLayout from "@/components/layout/MainLayout";
 import Breadcrumbs from "@/components/common/Breadcrumbs";
 import { useParams, usePathname, useRouter } from "next/navigation";
 import useGetBranchDetails from "@/hooks/branches/useGetBranchDetails";
-import Loading from "@/app/loading";
+import LoadingPage from "@/app/loading";
 import ErrorPage from "@/app/error";
 import EditBranchModal from "@/components/branches/EditBranchModal";
 import List from "@/components/common/List";
@@ -22,7 +22,7 @@ const BranchDetailsPage: React.FC = () => {
 
   const GetBranchDetailsQuery = useGetBranchDetails(params.id as string);
 
-  if (GetBranchDetailsQuery.isPending) return <Loading />;
+  if (GetBranchDetailsQuery.isPending) return <LoadingPage />;
 
   if (GetBranchDetailsQuery.isError) return <ErrorPage />;
 
