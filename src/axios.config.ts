@@ -12,7 +12,6 @@ Axios.interceptors.request.use(
   (config) => {
     if (hasCookie("iconic-access-token")) {
       config.headers["Authorization"] = getCookie("iconic-access-token");
-      config.headers["Content-Security-Policy"] = "upgrade-insecure-requests";
     }
     return config;
   },
