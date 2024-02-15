@@ -2,7 +2,7 @@
 
 import React from "react";
 import useGetAllBranches from "@/hooks/branches/useGetAllBranches";
-import LoadingClient from "@/components/common/LoadingClient";
+import Loading from "@/components/common/Loading";
 import Error from "@/components/common/Error";
 import Table, { TableColumn } from "@/components/common/Table";
 import { BranchDto } from "@/types/branch.types";
@@ -15,7 +15,7 @@ const BranchTable: React.FC = () => {
 
   const GetAllBranchesQuery = useGetAllBranches();
 
-  if (GetAllBranchesQuery.isPending) return <LoadingClient />;
+  if (GetAllBranchesQuery.isPending) return <Loading />;
 
   if (GetAllBranchesQuery.isError) return <Error />;
 
