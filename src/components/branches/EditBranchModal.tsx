@@ -81,9 +81,11 @@ const EditBranchModal: React.FC<EditBranchModalProps> = ({ branch }) => {
         onSubmit={handleSubmit}
       >
         <TextField<BranchEditFormFields>
+          required
           name={"branchName"}
-          value={branchEditForm.branchName}
+          label={"Name"}
           placeholder="Enter branch name"
+          value={branchEditForm.branchName}
           onFieldChange={(value) => {
             setBranchEditForm((oldState) => ({
               ...oldState,
@@ -99,7 +101,9 @@ const EditBranchModal: React.FC<EditBranchModalProps> = ({ branch }) => {
         />
 
         <TextField<BranchEditFormFields>
+          required
           name={"address"}
+          label={"Address"}
           placeholder={"Enter address details"}
           value={branchEditForm.address}
           onFieldChange={(value) => {

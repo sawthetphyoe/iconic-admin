@@ -8,7 +8,7 @@ const MainLayout: React.FC<React.HTMLProps<HTMLDivElement>> = ({
   className,
 }) => {
   return (
-    <div className={mergeClassNames("w-full flex", className)}>
+    <div className={mergeClassNames("w-full flex items-start", className)}>
       <SideNavMenu
         items={[
           {

@@ -50,3 +50,9 @@ export type CreateStaffRequestDto = {
   password: string;
   passwordConfirm: string;
 };
+
+export type StaffDetailsResponseDto = {
+  success: boolean;
+  payload: StaffDto;
+  issuedAt: string;
+};
