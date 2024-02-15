@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 import { deleteCookie, getCookie, hasCookie } from "cookies-next";
 
 const Axios = axios.create();
@@ -12,12 +12,13 @@ Axios.interceptors.request.use(
   (config) => {
     if (hasCookie("iconic-access-token")) {
       config.headers["Authorization"] = getCookie("iconic-access-token");
+      config.headers["Content-Security-Policy"] = "upgrade-insecure-requests";
     }
     return config;
   },
   (error) => {
     return Promise.reject(error);
-  },
+  }
 );
 
 // Extract error response
@@ -35,7 +36,7 @@ Axios.interceptors.response.use(
       ...error,
       data: error.response?.data,
     });
-  },
+  }
 );
 
 export default Axios;
