@@ -16,11 +16,11 @@ const searchStaff = async (
   return data;
 };
 
-const useSearchStaff = (searchParams: Partial<SearchStaffRequestDto>) => {
+const useGetAllStaff = (searchParams: Partial<SearchStaffRequestDto>) => {
   return useQuery({
     queryKey: ["search-staff", searchParams],
     queryFn: () => searchStaff(searchParams),
   });
 };
 
-export default useSearchStaff;
+export default useGetAllStaff;

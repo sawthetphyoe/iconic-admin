@@ -1,11 +1,11 @@
 import { useMutation } from "@tanstack/react-query";
-import { AuthLoginPayload, AuthLoginResponse } from "@/types/auth.types";
+import { AuthLoginRequestDto, AuthLoginResponseDto } from "@/types/auth.types";
 import { endpoints } from "@/lib/endpoints";
 import Axios from "@/axios.config";
 
 const authLogin = async (
-  payload: AuthLoginPayload,
-): Promise<AuthLoginResponse> => {
+  payload: AuthLoginRequestDto
+): Promise<AuthLoginResponseDto> => {
   const { data } = await Axios.post(endpoints.auth.login, payload);
   return data;
 };

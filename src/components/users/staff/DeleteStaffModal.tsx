@@ -3,7 +3,7 @@
 import Modal from "@/components/common/Modal";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import getMutationErrorMessage from "@/utils/getMutationErrorMessage";
+import getErrorMessageFromQuery from "@/utils/getErrorMessageFromQuery";
 import { useRouter } from "next/navigation";
 import { StaffDto } from "@/types/staff.types";
 import useDeleteStaff from "@/hooks/staff/useDeleteStaff";
@@ -25,7 +25,7 @@ const DeleteStaffModal: React.FC<DeleteStaffModalProps> = ({ staff }) => {
       setModalOpen(false);
       DeleteStaffMutation.reset();
     } else if (DeleteStaffMutation.isError) {
-      toast.error(getMutationErrorMessage(DeleteStaffMutation.error));
+      toast.error(getErrorMessageFromQuery(DeleteStaffMutation.error));
       DeleteStaffMutation.reset();
     }
   }, [DeleteStaffMutation, router]);

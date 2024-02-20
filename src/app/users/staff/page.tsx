@@ -2,19 +2,20 @@
 
 import React, { useState } from "react";
 import { SearchStaffRequestDto } from "@/types/staff.types";
-import useSearchStaff from "@/hooks/staff/useSearchStaff";
+import useGetAllStaff from "@/hooks/staff/useGetAllStaff";
 import LoadingPage from "@/app/loading";
 import ErrorPage from "@/app/error";
 import MainLayout from "@/components/layout/MainLayout";
 import CreateStaffModal from "@/components/users/staff/CreateStaffModal";
 import StaffTable from "@/components/users/staff/StaffTable";
+import PageTitle from "@/components/common/PageTitle";
 
 const StaffPage: React.FC = () => {
   const [staffFilterData, setStaffFilterData] = useState<
     Partial<SearchStaffRequestDto>
   >({});
 
-  const SearchStaffQuery = useSearchStaff(staffFilterData);
+  const SearchStaffQuery = useGetAllStaff(staffFilterData);
 
   if (SearchStaffQuery.isPending) return <LoadingPage />;
 
@@ -24,9 +25,9 @@ const StaffPage: React.FC = () => {
 
   return (
     <MainLayout>
-      <div className={"w-full flex flex-col gap-8 items-start px-4"}>
+      <div className={"main-container"}>
         <section className={"flex justify-between w-full items-center"}>
-          <h1 className={"font-semibold m-0 text-2xl"}>Staff</h1>
+          <PageTitle title={"Staff"} />
           <CreateStaffModal />
         </section>
         <section

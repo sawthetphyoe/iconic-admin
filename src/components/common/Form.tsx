@@ -16,6 +16,7 @@ type FormProps<T extends FieldValues> = Omit<
 > & {
   methods: UseFormReturn<T, any, T>;
   onSubmit: SubmitHandler<FieldValues>;
+  onFailed?: () => void;
 };
 
 type CompoundFormProps<T extends FieldValues> = FormProps<T> & {
@@ -26,6 +27,7 @@ type CompoundFormProps<T extends FieldValues> = FormProps<T> & {
 
 type TextFieldProps<T> = Omit<React.HTMLProps<HTMLInputElement>, "onChange"> & {
   name: keyof T;
+  wrapperClassName?: string;
   onFieldChange: (value: string) => void;
   label?: string;
   rules?: Omit<
@@ -34,7 +36,7 @@ type TextFieldProps<T> = Omit<React.HTMLProps<HTMLInputElement>, "onChange"> & {
   >;
 };
 
-export interface OptionProps extends React.HTMLProps<HTMLOptionElement> {
+export interface OptionType extends React.HTMLProps<HTMLOptionElement> {
   label: string;
   value: string;
 }
@@ -48,7 +50,7 @@ type SelectProps<T> = Omit<React.HTMLProps<HTMLSelectElement>, "onChange"> & {
     RegisterOptions<FieldValues, string>,
     "valueAsNumber" | "valueAsDate" | "setValueAs" | "disabled"
   >;
-  options: OptionProps[];
+  options: OptionType[];
 };
 
 function TextField<T>({
@@ -57,6 +59,7 @@ function TextField<T>({
   rules,
   className,
   value,
+  wrapperClassName,
   onFieldChange,
   required,
   ...props
@@ -70,7 +73,7 @@ function TextField<T>({
   });
 
   return (
-    <div className={"flex flex-col gap-1"}>
+    <div className={mergeClassNames("flex flex-col gap-1", wrapperClassName)}>
       {label && (
         <label
           htmlFor={name}
@@ -214,12 +217,16 @@ function SubmitButton({
 function Form<T extends FieldValues>({
   className,
   onSubmit,
+  onFailed = () => {},
   children,
   methods,
 }: CompoundFormProps<T>) {
   return (
     <FormProvider {...methods}>
-      <form className={className} onSubmit={methods.handleSubmit(onSubmit)}>
+      <form
+        className={className}
+        onSubmit={methods.handleSubmit(onSubmit, onFailed)}
+      >
         {children}
       </form>
     </FormProvider>

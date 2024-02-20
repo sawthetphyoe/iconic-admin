@@ -17,3 +17,15 @@ body {
   text-wrap: balance;
   }
 }
+
+.main-container {
+  @apply w-full flex flex-col gap-8 items-start;
+}
+
+.btn{
+  @apply flex items-center justify-center;
+}
+
+.btn:not(.btn-sm, .btn-md, .btn-theme) {
+  @apply min-w-[108px];
+}

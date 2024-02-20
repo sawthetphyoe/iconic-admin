@@ -11,12 +11,13 @@ const MainLayout: React.FC<React.HTMLProps<HTMLDivElement>> = ({
     <div className={mergeClassNames("w-full flex items-start", className)}>
       <SideNavMenu
         items={[
+          { name: "Dashboard", link: "/" },
           {
             parent: "Users",
             children: ["Staff", "Customers"],
           },
-          "Products",
           "Branches",
+          "Products",
           "Inventory",
           "Orders",
           "Settings",
@@ -24,7 +25,7 @@ const MainLayout: React.FC<React.HTMLProps<HTMLDivElement>> = ({
       />
       <main className={"flex flex-col w-[calc(100%-16rem)]"}>
         <NavBar />
-        <section className={"!px-6 !py-6 w-full"}>{children}</section>
+        <section className={"!px-8 !py-6 w-full"}>{children}</section>
       </main>
     </div>
   );

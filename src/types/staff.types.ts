@@ -1,4 +1,27 @@
 import { StaffRole } from "@/lib/enums";
+import { PageableResponseDto, ResponseDto } from "@/types";
+
+export type CreateStaffRequestDto = {
+  username: string;
+  email: string;
+  fullName: string;
+  role: StaffRole;
+  branch: string;
+  password: string;
+  passwordConfirm: string;
+};
+
+export type SearchStaffRequestDto = {
+  page: number;
+  size: number;
+  username: string;
+  fullName: string;
+  email: string;
+  branch: string;
+  role: StaffRole;
+  sort: "desc" | "asc";
+  orderBy: keyof StaffDto;
+};
 
 export type StaffDto = {
   id: string;
@@ -17,42 +40,6 @@ export type StaffDto = {
   updatedBy: string;
 };
 
-export type SearchStaffRequestDto = {
-  page: number;
-  size: number;
-  username: string;
-  fullName: string;
-  email: string;
-  branch: string;
-  role: StaffRole;
-  sort: "desc" | "asc";
-  orderBy: keyof StaffDto;
-};
+export type SearchStaffResponseDto = PageableResponseDto<StaffDto>;
 
-export type SearchStaffResponseDto = {
-  success: boolean;
-  payload: {
-    currentPage: number;
-    currentSize: number;
-    totalRecord: number;
-    totalPage: number;
-    dtoList: StaffDto[];
-  };
-  issuedAt: string;
-};
-
-export type CreateStaffRequestDto = {
-  username: string;
-  email: string;
-  fullName: string;
-  role: StaffRole;
-  branch: string;
-  password: string;
-  passwordConfirm: string;
-};
-
-export type StaffDetailsResponseDto = {
-  success: boolean;
-  payload: StaffDto;
-  issuedAt: string;
-};
+export type StaffDetailsResponseDto = ResponseDto<StaffDto>;

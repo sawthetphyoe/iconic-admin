@@ -13,6 +13,9 @@ const config: Config = {
       //   "gradient-conic":
       //     "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       // },
+      boxShadow: {
+        normal: "0px 4px 16px 0px rgba(0, 0, 0, 0.04)",
+      },
       fontFamily: {
         poppins: ["var(--font-poppins)"],
       },

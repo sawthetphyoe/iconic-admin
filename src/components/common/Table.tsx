@@ -56,22 +56,36 @@ function Table<T extends Record<string, any>>({
           </tr>
         </thead>
         {/* body */}
-        {dataSource.length > 0 ? (
-          <tbody className={"w-full relative"}>
-            {loading && (
-              <tr
-                className={
-                  "absolute top-0 left-0 w-full h-full z-10 bg-base-200 bg-opacity-20"
-                }
-              >
-                <th
-                  className={"w-full h-full flex items-center justify-center"}
-                >
-                  <span className="loading loading-dots loading-md text-neutral"></span>
-                </th>
-              </tr>
-            )}
-            {dataSource.map((record, i) => (
+        {/*{!loading && dataSource.length === 0 ? (*/}
+        {/*  // no data*/}
+        {/*  <tbody>*/}
+        {/*    <tr className={"bg-base-200 bg-opacity-20"}>*/}
+        {/*      <td*/}
+        {/*        colSpan={columns.length}*/}
+        {/*        className={*/}
+        {/*          "text-center py-8 font-semibold text-base text-base-content/50"*/}
+        {/*        }*/}
+        {/*      >*/}
+        {/*        No Data*/}
+        {/*      </td>*/}
+        {/*    </tr>*/}
+        {/*  </tbody>*/}
+        {/*) : (*/}
+        <tbody className={"w-full relative"}>
+          {/* loading */}
+          {loading && (
+            <tr
+              className={
+                "absolute top-0 left-0 w-full h-full z-10 bg-base-200 bg-opacity-20"
+              }
+            >
+              <th className={"w-full h-full flex items-center justify-center"}>
+                <span className="loading loading-dots loading-md text-neutral"></span>
+              </th>
+            </tr>
+          )}
+          {dataSource.length > 0 ? (
+            dataSource.map((record, i) => (
               <tr
                 key={i}
                 className={mergeClassNames(
@@ -91,22 +105,20 @@ function Table<T extends Record<string, any>>({
                   </td>
                 ))}
               </tr>
-            ))}
-          </tbody>
-        ) : (
-          <tbody>
-            <tr>
+            ))
+          ) : (
+            <tr className={"bg-base-200 bg-opacity-20"}>
               <td
                 colSpan={columns.length}
                 className={
                   "text-center py-8 font-semibold text-base text-base-content/50"
                 }
               >
-                No Data
+                {!loading && "No Data"}
               </td>
             </tr>
-          </tbody>
-        )}
+          )}
+        </tbody>
       </table>
     </div>
   );

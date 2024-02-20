@@ -13,6 +13,7 @@ import DeleteBranchModal from "@/components/branches/DeleteBranchModal";
 import BranchStaffTable from "@/components/branches/BranchStaffTable";
 import BranchItemsTable from "@/components/branches/BranchItemsTable";
 import AddItemModal from "@/components/branches/AddItemModal";
+import PageTitle from "@/components/common/PageTitle";
 
 const BranchDetailsPage: React.FC = () => {
   const params = useParams();
@@ -40,10 +41,10 @@ const BranchDetailsPage: React.FC = () => {
       <Breadcrumbs
         items={[{ name: "Branches", link: "/branches" }, { name }]}
       />
-      <div className={"w-full my-6 flex flex-col gap-12 items-start"}>
+      <div className={"main-container my-5"}>
         <section className={"w-full flex flex-col items-start gap-6"}>
           <header className={"w-full flex gap-4 items-center"}>
-            <h1 className={"text-2xl font-semibold"}>Branch Details</h1>
+            <PageTitle title={"Branch Details"} />
             <EditBranchModal
               key={updatedAt}
               branch={GetBranchDetailsQuery.data.payload}
@@ -51,22 +52,8 @@ const BranchDetailsPage: React.FC = () => {
           </header>
 
           <List className="w-full flex flex-col gap-4 items-start">
-            <List.Item label={"Branch Name"} value={name} />
-            <List.Item label={"Address"} value={address} />
-            {/*  <List.Item*/}
-            {/*    label={"Created Date"}*/}
-            {/*    value={dayjs(createdAt).format("DD/MM/YYYY")}*/}
-            {/*  />*/}
-            {/*  <List.Item label={"Created By"} value={createdBy} />*/}
-            {/*  {updatedAt && (*/}
-            {/*    <List.Item*/}
-            {/*      label={"Updated Date"}*/}
-            {/*      value={updatedAt ? dayjs(updatedAt).format("DD/MM/YYYY") : "-"}*/}
-            {/*    />*/}
-            {/*  )}*/}
-            {/*  {updatedBy && (*/}
-            {/*    <List.Item label={"Updated By"} value={updatedBy || "-"} />*/}
-            {/*  )}*/}
+            <List.Item label={"Branch Name"} content={name} />
+            <List.Item label={"Address"} content={address} />
           </List>
         </section>
 

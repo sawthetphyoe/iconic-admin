@@ -1,11 +1,11 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { BranchCreatePayloadDto } from "@/types/branch.types";
+import { BranchCreateRequestDto } from "@/types/branch.types";
 import { endpoints } from "@/lib/endpoints";
 import Axios from "@/axios.config";
 import { MutationSuccessResponseDto } from "@/types";
 
 const createNewBranch = async (
-  payload: BranchCreatePayloadDto
+  payload: BranchCreateRequestDto
 ): Promise<MutationSuccessResponseDto> => {
   const { data } = await Axios.post(endpoints.branches, payload);
   return data;
