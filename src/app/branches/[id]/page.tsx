@@ -12,7 +12,6 @@ import List from "@/components/common/List";
 import DeleteBranchModal from "@/components/branches/DeleteBranchModal";
 import BranchStaffTable from "@/components/branches/BranchStaffTable";
 import BranchItemsTable from "@/components/branches/BranchItemsTable";
-import dayjs from "dayjs";
 import AddItemModal from "@/components/branches/AddItemModal";
 
 const BranchDetailsPage: React.FC = () => {
@@ -54,25 +53,20 @@ const BranchDetailsPage: React.FC = () => {
           <List className="w-full flex flex-col gap-4 items-start">
             <List.Item label={"Branch Name"} value={name} />
             <List.Item label={"Address"} value={address} />
-            <List.Item
-              label={"Number of Staff"}
-              value={staffCount.toString()}
-            />
-            <List.Item label={"Number of Items"} value={"0"} />
-            <List.Item
-              label={"Created Date"}
-              value={dayjs(createdAt).format("DD/MM/YYYY")}
-            />
-            <List.Item label={"Created By"} value={createdBy} />
-            {updatedAt && (
-              <List.Item
-                label={"Updated Date"}
-                value={updatedAt ? dayjs(updatedAt).format("DD/MM/YYYY") : "-"}
-              />
-            )}
-            {updatedBy && (
-              <List.Item label={"Updated By"} value={updatedBy || "-"} />
-            )}
+            {/*  <List.Item*/}
+            {/*    label={"Created Date"}*/}
+            {/*    value={dayjs(createdAt).format("DD/MM/YYYY")}*/}
+            {/*  />*/}
+            {/*  <List.Item label={"Created By"} value={createdBy} />*/}
+            {/*  {updatedAt && (*/}
+            {/*    <List.Item*/}
+            {/*      label={"Updated Date"}*/}
+            {/*      value={updatedAt ? dayjs(updatedAt).format("DD/MM/YYYY") : "-"}*/}
+            {/*    />*/}
+            {/*  )}*/}
+            {/*  {updatedBy && (*/}
+            {/*    <List.Item label={"Updated By"} value={updatedBy || "-"} />*/}
+            {/*  )}*/}
           </List>
         </section>
 

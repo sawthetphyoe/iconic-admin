@@ -124,7 +124,7 @@ function Select<T>({
   ...props
 }: SelectProps<T>) {
   const { control } = useFormContext();
-  const { field, fieldState } = useController({
+  const { field, fieldState, formState } = useController({
     name,
     control,
     defaultValue: value,

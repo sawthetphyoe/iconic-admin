@@ -29,6 +29,7 @@ const BranchItemsTable: React.FC = () => {
 
   return (
     <Table
+      loading={true}
       dataSource={dataSources}
       columns={columns}
       containerClassname={"w-full"}

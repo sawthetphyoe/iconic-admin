@@ -18,6 +18,7 @@ type TableProps<T> = {
   containerClassname?: string;
   rowClassname?: string;
   onRowClick?: (record: T) => void;
+  loading?: boolean;
 };
 
 function Table<T extends Record<string, any>>({
@@ -28,6 +29,7 @@ function Table<T extends Record<string, any>>({
   titleClassname,
   rowClassname,
   onRowClick = () => {},
+  loading,
 }: TableProps<T>): React.ReactNode {
   return (
     <div
@@ -54,28 +56,57 @@ function Table<T extends Record<string, any>>({
           </tr>
         </thead>
         {/* body */}
-        <tbody className={"w-full"}>
-          {dataSource.map((record, i) => (
-            <tr
-              key={i}
-              className={mergeClassNames(
-                "hover border-b-slate-500 border-opacity-20",
-                rowClassname
-              )}
-              onClick={() => {
-                onRowClick(record);
-              }}
-            >
-              {columns.map((column, index) => (
-                <td key={index} className={"whitespace-nowrap"}>
-                  {typeof column.render === "function"
-                    ? column.render(record[column.dataIndex], record, i)
-                    : record[column.dataIndex]}
-                </td>
-              ))}
+        {dataSource.length > 0 ? (
+          <tbody className={"w-full relative"}>
+            {loading && (
+              <tr
+                className={
+                  "absolute top-0 left-0 w-full h-full z-10 bg-base-200 bg-opacity-20"
+                }
+              >
+                <th
+                  className={"w-full h-full flex items-center justify-center"}
+                >
+                  <span className="loading loading-dots loading-md text-neutral"></span>
+                </th>
+              </tr>
+            )}
+            {dataSource.map((record, i) => (
+              <tr
+                key={i}
+                className={mergeClassNames(
+                  "hover border-b-slate-500 border-opacity-20",
+                  rowClassname,
+                  loading && "opacity-30"
+                )}
+                onClick={() => {
+                  onRowClick(record);
+                }}
+              >
+                {columns.map((column, index) => (
+                  <td key={index} className={"whitespace-nowrap"}>
+                    {typeof column.render === "function"
+                      ? column.render(record[column.dataIndex], record, i)
+                      : record[column.dataIndex]}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        ) : (
+          <tbody>
+            <tr>
+              <td
+                colSpan={columns.length}
+                className={
+                  "text-center py-8 font-semibold text-base text-base-content/50"
+                }
+              >
+                No Data
+              </td>
             </tr>
-          ))}
-        </tbody>
+          </tbody>
+        )}
       </table>
     </div>
   );

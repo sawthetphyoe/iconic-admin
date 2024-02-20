@@ -31,7 +31,7 @@ const BranchStaffTable: React.FC = () => {
 
   return (
     <Table
-      dataSource={dataSources}
+      dataSource={[]}
       columns={columns}
       containerClassname={"w-full"}
       titleClassname={"text-sm font-semibold"}
