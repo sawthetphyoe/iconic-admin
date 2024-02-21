@@ -17,8 +17,18 @@ interface ListCompoundProps extends React.FC<ListProps> {
 
 const ListItem: React.FC<ListItemProps> = ({ label, content }) => (
   <li className={"flex w-full items-start"}>
-    <label className={"w-[200px] !leading-[48px]"}>{label} :</label>
-    <div className={"m-0 flex-1"}>{content}</div>
+    <label className={"w-[200px] !leading-[40px] text-base-content/50"}>
+      {label} :
+    </label>
+    <div className={"m-0 flex-1"}>
+      {typeof content === "string" ? (
+        <span className={"!leading-[40px] text-base-content font-medium"}>
+          {content}
+        </span>
+      ) : (
+        content
+      )}
+    </div>
   </li>
 );
 

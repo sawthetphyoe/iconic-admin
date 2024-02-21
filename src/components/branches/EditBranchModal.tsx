@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import Modal from "@/components/common/Modal";
 import { MdModeEdit } from "react-icons/md";
 import { useForm } from "react-hook-form";
-import { BranchDetailsResponseDto } from "@/types/branch.types";
+import { BranchDetailsResponseDto } from "@/types/branches.types";
 import useUpdateBranch from "@/hooks/branches/useUpdateBranch";
 import getErrorMessageFromQuery from "@/utils/getErrorMessageFromQuery";
 import { toast } from "react-toastify";
@@ -50,7 +50,6 @@ const EditBranchModal: React.FC<EditBranchModalProps> = ({ branch }) => {
   }, [UpdateBranchMutation, methods]);
 
   const handleSubmit = () => {
-    console.log("submit");
     UpdateBranchMutation.mutate({
       id: branch.id,
       name: branchEditForm.branchName,

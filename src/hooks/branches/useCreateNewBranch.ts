@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { BranchCreateRequestDto } from "@/types/branch.types";
+import { BranchCreateRequestDto } from "@/types/branches.types";
 import { endpoints } from "@/lib/endpoints";
 import Axios from "@/axios.config";
 import { MutationSuccessResponseDto } from "@/types";

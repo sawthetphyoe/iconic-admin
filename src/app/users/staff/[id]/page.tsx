@@ -34,12 +34,12 @@ const StaffDetailPage = () => {
         ]}
       />
       <div className={"main-container my-5"}>
-        <section className={"w-full flex flex-col items-start gap-6"}>
+        <section className={"w-full flex flex-col items-start"}>
           <header className={"w-full flex gap-4 items-center"}>
             <PageTitle title={"Staff Details"} />
             <EditStaffModal key={staff.updatedAt} staff={staff} />
           </header>
-          <List className="w-full flex flex-col gap-4 items-start">
+          <List className="w-full flex flex-col items-start">
             <List.Item label={"Full Name"} content={staff.fullName} />
             <List.Item label={"Username"} content={staff.username} />
             <List.Item label={"Email"} content={staff.email} />

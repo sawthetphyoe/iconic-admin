@@ -14,6 +14,7 @@ import BranchStaffTable from "@/components/branches/BranchStaffTable";
 import BranchItemsTable from "@/components/branches/BranchItemsTable";
 import AddItemModal from "@/components/branches/AddItemModal";
 import PageTitle from "@/components/common/PageTitle";
+import useGetAllProducts from "@/hooks/products/useGetAllProducts";
 
 const BranchDetailsPage: React.FC = () => {
   const params = useParams();
@@ -22,9 +23,13 @@ const BranchDetailsPage: React.FC = () => {
 
   const GetBranchDetailsQuery = useGetBranchDetails(params.id as string);
 
-  if (GetBranchDetailsQuery.isPending) return <LoadingPage />;
+  const GetAllProductsQuery = useGetAllProducts();
 
-  if (GetBranchDetailsQuery.isError) return <ErrorPage />;
+  if (GetAllProductsQuery.isPending || GetBranchDetailsQuery.isPending)
+    return <LoadingPage />;
+
+  if (GetAllProductsQuery.isError || GetBranchDetailsQuery.isError)
+    return <ErrorPage />;
 
   const {
     name,
@@ -42,7 +47,7 @@ const BranchDetailsPage: React.FC = () => {
         items={[{ name: "Branches", link: "/branches" }, { name }]}
       />
       <div className={"main-container my-5"}>
-        <section className={"w-full flex flex-col items-start gap-6"}>
+        <section className={"w-full gap-2 flex flex-col items-start"}>
           <header className={"w-full flex gap-4 items-center"}>
             <PageTitle title={"Branch Details"} />
             <EditBranchModal
@@ -51,7 +56,7 @@ const BranchDetailsPage: React.FC = () => {
             />
           </header>
 
-          <List className="w-full flex flex-col gap-4 items-start">
+          <List className="w-full flex flex-col items-start">
             <List.Item label={"Branch Name"} content={name} />
             <List.Item label={"Address"} content={address} />
           </List>
@@ -65,12 +70,15 @@ const BranchDetailsPage: React.FC = () => {
         <section className={"w-full flex flex-col items-start gap-4"}>
           <div className={"flex justify-between w-full items-center"}>
             <h2 className={"font-semibold text-xl"}>Items</h2>
-            <AddItemModal branch={GetBranchDetailsQuery.data.payload} />
+            <AddItemModal
+              products={GetAllProductsQuery.data.payload}
+              branch={GetBranchDetailsQuery.data.payload}
+            />
           </div>
           <BranchItemsTable />
         </section>
 
-        <section className={""}>
+        <section className={"mt-6"}>
           <DeleteBranchModal branch={GetBranchDetailsQuery.data.payload} />
         </section>
       </div>

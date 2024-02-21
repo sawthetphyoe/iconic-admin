@@ -16,3 +16,10 @@ export type PageableResponseDto<T> = ResponseDto<{
   totalPage: number;
   dtoList: T[];
 }>;
+
+export type BasePageableRequestDto<T> = {
+  page: number;
+  size: number;
+  sort: "desc" | "asc";
+  order: keyof T;
+};

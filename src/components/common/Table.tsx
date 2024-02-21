@@ -84,40 +84,41 @@ function Table<T extends Record<string, any>>({
               </th>
             </tr>
           )}
-          {dataSource.length > 0 ? (
-            dataSource.map((record, i) => (
-              <tr
-                key={i}
-                className={mergeClassNames(
-                  "hover border-b-slate-500 border-opacity-20",
-                  rowClassname,
-                  loading && "opacity-30"
-                )}
-                onClick={() => {
-                  onRowClick(record);
-                }}
-              >
-                {columns.map((column, index) => (
-                  <td key={index} className={"whitespace-nowrap"}>
-                    {typeof column.render === "function"
-                      ? column.render(record[column.dataIndex], record, i)
-                      : record[column.dataIndex]}
-                  </td>
-                ))}
+          {!loading &&
+            (dataSource.length > 0 ? (
+              dataSource.map((record, i) => (
+                <tr
+                  key={i}
+                  className={mergeClassNames(
+                    "hover border-b-slate-500 border-opacity-20",
+                    rowClassname,
+                    loading && "opacity-30"
+                  )}
+                  onClick={() => {
+                    onRowClick(record);
+                  }}
+                >
+                  {columns.map((column, index) => (
+                    <td key={index} className={"whitespace-nowrap"}>
+                      {typeof column.render === "function"
+                        ? column.render(record[column.dataIndex], record, i)
+                        : record[column.dataIndex]}
+                    </td>
+                  ))}
+                </tr>
+              ))
+            ) : (
+              <tr className={"bg-base-200 bg-opacity-20"}>
+                <td
+                  colSpan={columns.length}
+                  className={
+                    "text-center py-8 font-semibold text-base text-base-content/50"
+                  }
+                >
+                  {!loading && "No Data"}
+                </td>
               </tr>
-            ))
-          ) : (
-            <tr className={"bg-base-200 bg-opacity-20"}>
-              <td
-                colSpan={columns.length}
-                className={
-                  "text-center py-8 font-semibold text-base text-base-content/50"
-                }
-              >
-                {!loading && "No Data"}
-              </td>
-            </tr>
-          )}
+            ))}
         </tbody>
       </table>
     </div>

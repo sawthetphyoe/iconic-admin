@@ -45,6 +45,7 @@ type SelectProps<T> = Omit<React.HTMLProps<HTMLSelectElement>, "onChange"> & {
   name: keyof T;
   label?: string;
   value: string;
+  wrapperClassname?: string;
   onFieldChange: (value: string) => void;
   rules?: Omit<
     RegisterOptions<FieldValues, string>,
@@ -124,6 +125,7 @@ function Select<T>({
   value,
   required,
   options,
+  wrapperClassname,
   ...props
 }: SelectProps<T>) {
   const { control } = useFormContext();
@@ -135,7 +137,7 @@ function Select<T>({
   });
 
   return (
-    <div className={"flex flex-col gap-1"}>
+    <div className={mergeClassNames("flex flex-col gap-1", wrapperClassname)}>
       {label && (
         <label
           htmlFor={name}

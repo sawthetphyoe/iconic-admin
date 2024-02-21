@@ -12,12 +12,12 @@ const MainLayout: React.FC<React.HTMLProps<HTMLDivElement>> = ({
       <SideNavMenu
         items={[
           { name: "Dashboard", link: "/" },
+          "Products",
+          "Branches",
           {
             parent: "Users",
             children: ["Staff", "Customers"],
           },
-          "Branches",
-          "Products",
           "Inventory",
           "Orders",
           "Settings",

@@ -19,7 +19,7 @@ body {
 }
 
 .main-container {
-  @apply w-full flex flex-col gap-8 items-start;
+  @apply w-full flex flex-col gap-10 items-start;
 }
 
 .btn{

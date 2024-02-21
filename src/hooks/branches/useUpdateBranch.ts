@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Axios from "@/axios.config";
 import { endpoints } from "@/lib/endpoints";
-import { BranchUpdateRequestDto } from "@/types/branch.types";
+import { BranchUpdateRequestDto } from "@/types/branches.types";
 import { MutationSuccessResponseDto } from "@/types";
 
 const updateBranch = async (

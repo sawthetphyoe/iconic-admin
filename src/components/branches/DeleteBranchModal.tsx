@@ -2,7 +2,7 @@
 
 import Modal from "@/components/common/Modal";
 import React, { useEffect, useState } from "react";
-import { BranchDetailsResponseDto } from "@/types/branch.types";
+import { BranchDetailsResponseDto } from "@/types/branches.types";
 import useDeleteBranch from "@/hooks/branches/useDeleteBranch";
 import { toast } from "react-toastify";
 import getErrorMessageFromQuery from "@/utils/getErrorMessageFromQuery";

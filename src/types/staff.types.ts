@@ -1,5 +1,9 @@
 import { StaffRole } from "@/lib/enums";
-import { PageableResponseDto, ResponseDto } from "@/types";
+import {
+  BasePageableRequestDto,
+  PageableResponseDto,
+  ResponseDto,
+} from "@/types";
 
 export type CreateStaffRequestDto = {
   username: string;
@@ -12,16 +16,12 @@ export type CreateStaffRequestDto = {
 };
 
 export type SearchStaffRequestDto = {
-  page: number;
-  size: number;
   username: string;
   fullName: string;
   email: string;
   branch: string;
   role: StaffRole;
-  sort: "desc" | "asc";
-  orderBy: keyof StaffDto;
-};
+} & BasePageableRequestDto<StaffDto>;
 
 export type StaffDto = {
   id: string;

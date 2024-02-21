@@ -7,4 +7,5 @@ export const endpoints = Object.freeze({
   staff: "/staff",
   products: "/products",
   productTypes: "/product-types",
+  inventories: "/inventories",
 });

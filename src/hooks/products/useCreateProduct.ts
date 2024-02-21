@@ -22,6 +22,9 @@ const useCreateProduct = () => {
     mutationFn: createProduct,
     onSuccess: async () => {
       await queryClient.invalidateQueries({
+        queryKey: ["search-products"],
+      });
+      await queryClient.invalidateQueries({
         queryKey: ["get-all-products"],
       });
     },

@@ -1,4 +1,4 @@
-import { PageableResponseDto } from "@/types";
+import { PageableResponseDto, ResponseDto } from "@/types";
 
 export type ProductImageColorField = `${string}#${string}`;
 
@@ -41,7 +41,11 @@ export type SearchProductRequestDto = {
   name: string;
   productType: string;
   sort: "desc" | "asc";
-  orderBy: keyof ProductDto;
+  order: keyof ProductDto;
 };
 
+export type GetAllProductResponseDto = ResponseDto<ProductDto[]>;
+
 export type SearchProductResponseDto = PageableResponseDto<ProductDto>;
+
+export type ProductDetailResponseDto = ResponseDto<ProductDto>;

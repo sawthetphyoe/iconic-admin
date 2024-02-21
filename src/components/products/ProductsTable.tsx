@@ -1,17 +1,20 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import useGetAllProducts from "@/hooks/products/useGetAllProducts";
+import useSearchProducts from "@/hooks/products/useSearchProducts";
 import { ProductDto } from "@/types/products.types";
 import { toast } from "react-toastify";
 import getErrorMessageFromQuery from "@/utils/getErrorMessageFromQuery";
 import Table, { TableColumn } from "@/components/common/Table";
 import dayjs from "dayjs";
+import { usePathname, useRouter } from "next/navigation";
 
 const ProductsTable: React.FC = () => {
+  const router = useRouter();
+  const pathname = usePathname();
   const [tableData, setTableData] = useState<ProductDto[]>([]);
 
-  const GetAllProductsQuery = useGetAllProducts({});
+  const GetAllProductsQuery = useSearchProducts({});
 
   useEffect(() => {
     if (GetAllProductsQuery.isSuccess) {
@@ -56,9 +59,9 @@ const ProductsTable: React.FC = () => {
       containerClassname={"w-full"}
       titleClassname={"text-sm font-semibold"}
       rowClassname={"cursor-pointer"}
-      // onRowClick={(record) => {
-      //   router.push(`${pathname}/${record.id}`);
-      // }}
+      onRowClick={(record) => {
+        router.push(`${pathname}/${record.id}`);
+      }}
     />
   );
 };
