@@ -5,15 +5,16 @@ import { HiPlus } from "react-icons/hi";
 import Form from "@/components/common/Form";
 import { useForm } from "react-hook-form";
 import Modal from "@/components/common/Modal";
-import {
-  addProductImage,
-  ProductColorImage,
-} from "@/store/slices/create-product-form-data.slice";
+import { ProductColorImage } from "@/store/slices/create-product-form-data.slice";
 import { MdOutlineFileUpload } from "react-icons/md";
 
 import Image from "next/image";
 import mergeClassNames from "@/utils/mergeClassnames";
 import { useDispatch } from "react-redux";
+
+type AddProductImageModalProps = {
+  onSave: (value: ProductColorImage) => void;
+};
 
 type AddProductImageFormFields = Omit<ProductColorImage, "file"> & {
   file: File | null;
@@ -25,7 +26,9 @@ const initialState: AddProductImageFormFields = {
   file: null,
 };
 
-const AddProductImageModal: React.FC = () => {
+const AddProductImageModal: React.FC<AddProductImageModalProps> = ({
+  onSave,
+}) => {
   const dispatch = useDispatch();
 
   const methods = useForm({
@@ -54,7 +57,7 @@ const AddProductImageModal: React.FC = () => {
       setIsFileError(true);
       return;
     }
-    dispatch(addProductImage(addProductImageFormData as ProductColorImage));
+    onSave(addProductImageFormData as ProductColorImage);
     setModalOpen(false);
     methods.reset();
     setAddProductImageFormData(initialState);

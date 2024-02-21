@@ -16,8 +16,6 @@ export {
   removeRam,
   addStorage,
   removeStorage,
-  addProductImage,
-  removeProductImage,
   selectCreateProductFormData,
   CreateProductFormDataSlice,
 } from "./create-product-form-data.slice";

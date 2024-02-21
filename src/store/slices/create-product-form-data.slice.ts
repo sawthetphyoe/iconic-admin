@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "@/store";
-import { CreateProductRequestDto } from "@/types/products.types";
 
 export type ProductColorImage = {
   color: string;
@@ -8,18 +7,22 @@ export type ProductColorImage = {
   file: File;
 };
 
-type CreateProductStoreType = CreateProductRequestDto & {
-  images: ProductColorImage[];
+export type CreateProductRequestStoreType = {
+  name: string;
+  productType: string;
+  keyFeatures: string[];
+  processors: string[];
+  rams: string[];
+  storages: string[];
 };
 
-const initialState: CreateProductStoreType = {
+const initialState: CreateProductRequestStoreType = {
   name: "",
   productType: "",
   keyFeatures: [],
   processors: [],
   rams: [],
   storages: [],
-  images: [],
 };
 
 export const CreateProductFormDataSlice = createSlice({
@@ -62,14 +65,14 @@ export const CreateProductFormDataSlice = createSlice({
         (storage) => storage !== action.payload
       );
     },
-    addProductImage: (state, action: PayloadAction<ProductColorImage>) => {
-      state.images.push(action.payload);
-    },
-    removeProductImage: (state, action: PayloadAction<ProductColorImage>) => {
-      state.images = state.images.filter(
-        (image) => image.color !== action.payload.color
-      );
-    },
+    // addProductImage: (state, action: PayloadAction<ProductColorImage>) => {
+    //   state.images.push(action.payload);
+    // },
+    // removeProductImage: (state, action: PayloadAction<ProductColorImage>) => {
+    //   state.images = state.images.filter(
+    //     (image) => image.color !== action.payload.color
+    //   );
+    // },
   },
 });
 
@@ -89,6 +92,6 @@ export const {
   removeRam,
   addStorage,
   removeStorage,
-  addProductImage,
-  removeProductImage,
+  // addProductImage,
+  // removeProductImage,
 } = CreateProductFormDataSlice.actions;

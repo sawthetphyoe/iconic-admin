@@ -5,10 +5,10 @@ export type ProductImageColorField = `${string}#${string}`;
 export type CreateProductRequestDto = {
   name: string;
   productType: string;
-  keyFeatures: string[];
-  processors: string[];
-  rams: string[];
-  storages: string[];
+  keyFeatures: string;
+  processors: string;
+  rams: string;
+  storages: string;
 } & Record<ProductImageColorField, File>;
 
 export type ProductColorImageDto = {
