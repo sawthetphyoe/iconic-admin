@@ -15,7 +15,7 @@ const ThemeController: React.FC = () => {
 
   return (
     <button
-      className="btn btn-ghost btn-circle"
+      className="btn btn-theme btn-ghost btn-circle"
       onClick={() => {
         if (isDarkMode) {
           setCookie("theme", LIGHT_THEME, cookieOptions);

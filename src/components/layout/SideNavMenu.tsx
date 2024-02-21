@@ -9,6 +9,7 @@ type MenuItem =
       parent: string;
       children: (string | MenuItem)[];
     }
+  | { name: string; link: string }
   | string;
 
 type SideNavMenuProps = {
@@ -40,6 +41,19 @@ const SideNavMenuItem = ({
           href={"/" + generateHref(item, parentLink)}
         >
           {item}
+        </Link>
+      </li>
+    );
+  }
+
+  if ("name" in item && "link" in item) {
+    const active =
+      item.link === "/" ? pathname === "/" : pathname?.includes(item.link);
+
+    return (
+      <li className={"text-base"}>
+        <Link className={active ? "active" : ""} href={item.link}>
+          {item.name}
         </Link>
       </li>
     );

@@ -2,10 +2,10 @@
 
 import Modal from "@/components/common/Modal";
 import React, { useEffect, useState } from "react";
-import { BranchDetailsResponseDto } from "@/types/branch.types";
+import { BranchDetailsResponseDto } from "@/types/branches.types";
 import useDeleteBranch from "@/hooks/branches/useDeleteBranch";
 import { toast } from "react-toastify";
-import getMutationErrorMessage from "@/utils/getMutationErrorMessage";
+import getErrorMessageFromQuery from "@/utils/getErrorMessageFromQuery";
 import { useRouter } from "next/navigation";
 
 type DeleteBranchModalProps = {
@@ -25,7 +25,7 @@ const DeleteBranchModal: React.FC<DeleteBranchModalProps> = ({ branch }) => {
       setModalOpen(false);
       DeleteBranchMutation.reset();
     } else if (DeleteBranchMutation.isError) {
-      toast.error(getMutationErrorMessage(DeleteBranchMutation.error));
+      toast.error(getErrorMessageFromQuery(DeleteBranchMutation.error));
       DeleteBranchMutation.reset();
     }
   }, [DeleteBranchMutation, router]);

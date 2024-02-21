@@ -8,7 +8,7 @@ import { deleteCookie, hasCookie, setCookie } from "cookies-next";
 import { useDispatch } from "react-redux";
 import { removeUser } from "@/store";
 import { toast } from "react-toastify";
-import getMutationErrorMessage from "@/utils/getMutationErrorMessage";
+import getErrorMessageFromQuery from "@/utils/getErrorMessageFromQuery";
 import Form from "@/components/common/Form";
 
 type LoginFormField = {
@@ -45,7 +45,7 @@ const LoginForm: React.FC = () => {
       );
       hasCookie("iconic-access-token") && router.replace("/");
     } else if (AuthLoginMutation.isError) {
-      toast.error(getMutationErrorMessage(AuthLoginMutation.error));
+      toast.error(getErrorMessageFromQuery(AuthLoginMutation.error));
     }
   }, [
     AuthLoginMutation.isSuccess,

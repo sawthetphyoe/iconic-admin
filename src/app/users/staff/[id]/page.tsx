@@ -13,6 +13,7 @@ import DeleteStaffModal from "@/components/users/staff/DeleteStaffModal";
 import { StaffRole } from "@/lib/enums";
 import getDisplayRole from "@/utils/getDisplayRole";
 import EditStaffModal from "@/components/users/staff/EditStaffModal";
+import PageTitle from "@/components/common/PageTitle";
 
 const StaffDetailPage = () => {
   const params = useParams();
@@ -32,27 +33,27 @@ const StaffDetailPage = () => {
           { name: staff.fullName },
         ]}
       />
-      <div className={"w-full my-6 flex flex-col gap-12 items-start"}>
-        <section className={"w-full flex flex-col items-start gap-6"}>
+      <div className={"main-container my-5"}>
+        <section className={"w-full flex flex-col items-start"}>
           <header className={"w-full flex gap-4 items-center"}>
-            <h1 className={"text-2xl font-semibold"}>Staff Details</h1>
+            <PageTitle title={"Staff Details"} />
             <EditStaffModal key={staff.updatedAt} staff={staff} />
           </header>
-          <List className="w-full flex flex-col gap-4 items-start">
-            <List.Item label={"Full Name"} value={staff.fullName} />
-            <List.Item label={"Username"} value={staff.username} />
-            <List.Item label={"Email"} value={staff.email} />
-            <List.Item label={"Role"} value={getDisplayRole(staff.role)} />
-            <List.Item label={"Branch"} value={staff.branch?.name || "-"} />
+          <List className="w-full flex flex-col items-start">
+            <List.Item label={"Full Name"} content={staff.fullName} />
+            <List.Item label={"Username"} content={staff.username} />
+            <List.Item label={"Email"} content={staff.email} />
+            <List.Item label={"Role"} content={getDisplayRole(staff.role)} />
+            <List.Item label={"Branch"} content={staff.branch?.name || "-"} />
             <List.Item
               label={"Created Date"}
-              value={dayjs(staff.createdAt).format("DD/MM/YYYY")}
+              content={dayjs(staff.createdAt).format("DD/MM/YYYY")}
             />
-            <List.Item label={"Created By"} value={staff.createdBy} />
+            <List.Item label={"Created By"} content={staff.createdBy} />
             {staff.updatedAt && (
               <List.Item
                 label={"Updated Date"}
-                value={
+                content={
                   staff.updatedAt
                     ? dayjs(staff.updatedAt).format("DD/MM/YYYY")
                     : "-"
@@ -60,7 +61,10 @@ const StaffDetailPage = () => {
               />
             )}
             {staff.updatedBy && (
-              <List.Item label={"Updated By"} value={staff.updatedBy || "-"} />
+              <List.Item
+                label={"Updated By"}
+                content={staff.updatedBy || "-"}
+              />
             )}
           </List>
         </section>

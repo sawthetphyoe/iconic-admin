@@ -1,9 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { currentUserSlice } from "@/store/slices";
+import { CreateProductFormDataSlice, currentUserSlice } from "@/store/slices";
 
 export const store = configureStore({
   reducer: {
     [currentUserSlice.name]: currentUserSlice.reducer,
+    [CreateProductFormDataSlice.name]: CreateProductFormDataSlice.reducer,
   },
 });
 

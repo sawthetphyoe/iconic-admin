@@ -1,15 +1,10 @@
 import React from "react";
 import mergeClassNames from "@/utils/mergeClassnames";
 
-const ListItem: React.FC<{ label: string; value: string }> = ({
-  label,
-  value,
-}) => (
-  <li className={"flex w-full"}>
-    <label className={"w-[200px]"}>{label} :</label>
-    <p className={"m-0 flex-1"}>{value}</p>
-  </li>
-);
+interface ListItemProps {
+  label: React.ReactNode;
+  content: React.ReactNode;
+}
 
 interface ListProps {
   children: React.ReactNode;
@@ -17,8 +12,25 @@ interface ListProps {
 }
 
 interface ListCompoundProps extends React.FC<ListProps> {
-  Item: React.FC<{ label: string; value: string }>;
+  Item: React.FC<ListItemProps>;
 }
+
+const ListItem: React.FC<ListItemProps> = ({ label, content }) => (
+  <li className={"flex w-full items-start"}>
+    <label className={"w-[200px] !leading-[40px] text-base-content/50"}>
+      {label} :
+    </label>
+    <div className={"m-0 flex-1"}>
+      {typeof content === "string" ? (
+        <span className={"!leading-[40px] text-base-content font-medium"}>
+          {content}
+        </span>
+      ) : (
+        content
+      )}
+    </div>
+  </li>
+);
 
 const List: ListCompoundProps = ({ children, className }) => {
   return <ul className={mergeClassNames(className)}>{children}</ul>;

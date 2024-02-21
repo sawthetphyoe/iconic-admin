@@ -1,4 +1,4 @@
-import { BranchDetailsResponseDto } from "@/types/branch.types";
+import { BranchDetailsResponseDto } from "@/types/branches.types";
 import Axios from "@/axios.config";
 import { endpoints } from "@/lib/endpoints";
 import { useQuery } from "@tanstack/react-query";

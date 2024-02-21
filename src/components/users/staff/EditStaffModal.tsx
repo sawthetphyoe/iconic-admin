@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { CreateStaffRequestDto, StaffDto } from "@/types/staff.types";
 import Modal from "@/components/common/Modal";
-import Form, { OptionProps } from "@/components/common/Form";
+import Form, { OptionType } from "@/components/common/Form";
 import { StaffRole } from "@/lib/enums";
 import { useForm } from "react-hook-form";
 import useGetAllBranches from "@/hooks/branches/useGetAllBranches";
 import { MdModeEdit } from "react-icons/md";
 import useUpdateStaff from "@/hooks/staff/useUpdateStaff";
 import { toast } from "react-toastify";
-import getMutationErrorMessage from "@/utils/getMutationErrorMessage";
+import getErrorMessageFromQuery from "@/utils/getErrorMessageFromQuery";
 
 type UpdateStaffFormFields = Partial<CreateStaffRequestDto>;
 
@@ -42,7 +42,7 @@ const EditStaffModal: React.FC<UpdateStaffModalProps> = ({ staff }) => {
       methods.reset();
       UpdateStaffMutation.reset();
     } else if (UpdateStaffMutation.isError) {
-      toast.error(getMutationErrorMessage(UpdateStaffMutation.error));
+      toast.error(getErrorMessageFromQuery(UpdateStaffMutation.error));
       UpdateStaffMutation.reset();
     }
   }, [UpdateStaffMutation, methods]);
@@ -61,13 +61,13 @@ const EditStaffModal: React.FC<UpdateStaffModalProps> = ({ staff }) => {
     UpdateStaffMutation.mutate({ ...updateStaffFormData, id: staff.id });
   };
 
-  const branchOptions: OptionProps[] =
+  const branchOptions: OptionType[] =
     GetAllBranchesQuery.data?.payload?.map((item) => ({
       label: item.name,
       value: item.id,
     })) || [];
 
-  const roleOptions: OptionProps[] = [
+  const roleOptions: OptionType[] = [
     { label: "Super Admin", value: StaffRole.SuperAdmin },
     { label: "Admin", value: StaffRole.Admin },
   ];

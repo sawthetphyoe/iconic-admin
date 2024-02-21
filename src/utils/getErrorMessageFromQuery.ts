@@ -1,6 +1,6 @@
 import { GenericError } from "@/components/context/QueryWrapper";
 
-const getMutationErrorMessage = (error: GenericError) => {
+const getErrorMessageFromQuery = (error: GenericError) => {
   return (
     (typeof error.data?.message === "string"
       ? error.data?.message
@@ -8,4 +8,4 @@ const getMutationErrorMessage = (error: GenericError) => {
   );
 };
 
-export default getMutationErrorMessage;
+export default getErrorMessageFromQuery;

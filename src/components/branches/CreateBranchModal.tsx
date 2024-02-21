@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { HiPlus } from "react-icons/hi";
 import useCreateNewBranch from "@/hooks/branches/useCreateNewBranch";
 import { toast } from "react-toastify";
-import getMutationErrorMessage from "@/utils/getMutationErrorMessage";
+import getErrorMessageFromQuery from "@/utils/getErrorMessageFromQuery";
 import Form from "@/components/common/Form";
 
 type CreateBranchFormFields = {
@@ -38,7 +38,7 @@ const CreateBranchModal: React.FC = () => {
       methods.reset();
       CreateNewBranchMutation.reset();
     } else if (CreateNewBranchMutation.isError) {
-      toast.error(getMutationErrorMessage(CreateNewBranchMutation.error));
+      toast.error(getErrorMessageFromQuery(CreateNewBranchMutation.error));
       CreateNewBranchMutation.reset();
     }
   }, [CreateNewBranchMutation, methods]);

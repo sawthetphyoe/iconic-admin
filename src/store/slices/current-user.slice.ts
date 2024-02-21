@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "@/store";
-import { CurrentUserResponse } from "@/types/auth.types";
+import { CurrentUserResponseDto } from "@/types/auth.types";
 
-type CurrentUserStoreType = CurrentUserResponse["payload"];
+type CurrentUserStoreType = CurrentUserResponseDto["payload"];
 
 type PayloadType = CurrentUserStoreType;
 

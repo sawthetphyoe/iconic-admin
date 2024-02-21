@@ -4,11 +4,11 @@ import Modal from "@/components/common/Modal";
 import React, { useEffect, useState } from "react";
 import { HiPlus } from "react-icons/hi";
 import { toast } from "react-toastify";
-import getMutationErrorMessage from "@/utils/getMutationErrorMessage";
+import getErrorMessageFromQuery from "@/utils/getErrorMessageFromQuery";
 import { CreateStaffRequestDto } from "@/types/staff.types";
 import { StaffRole } from "@/lib/enums";
 import useCreateStaff from "@/hooks/staff/useCreateStaff";
-import Form, { OptionProps } from "@/components/common/Form";
+import Form, { OptionType } from "@/components/common/Form";
 import { useForm } from "react-hook-form";
 import useGetAllBranches from "@/hooks/branches/useGetAllBranches";
 import { DEFAULT_STAFF_PASSWORD } from "@/lib/constants";
@@ -47,7 +47,7 @@ const CreateStaffModal: React.FC = () => {
       CreateStaffMutation.reset();
       methods.reset();
     } else if (CreateStaffMutation.isError) {
-      toast.error(getMutationErrorMessage(CreateStaffMutation.error));
+      toast.error(getErrorMessageFromQuery(CreateStaffMutation.error));
       CreateStaffMutation.reset();
     }
   }, [CreateStaffMutation, methods]);
@@ -71,13 +71,13 @@ const CreateStaffModal: React.FC = () => {
     });
   };
 
-  const branchOptions: OptionProps[] =
+  const branchOptions: OptionType[] =
     GetAllBranchesQuery.data?.payload?.map((item) => ({
       label: item.name,
       value: item.id,
     })) || [];
 
-  const roleOptions: OptionProps[] = [
+  const roleOptions: OptionType[] = [
     { label: "Super Admin", value: StaffRole.SuperAdmin },
     { label: "Admin", value: StaffRole.Admin },
   ];

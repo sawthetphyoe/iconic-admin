@@ -5,7 +5,7 @@ import useGetAllBranches from "@/hooks/branches/useGetAllBranches";
 import Loading from "@/components/common/Loading";
 import Error from "@/components/common/Error";
 import Table, { TableColumn } from "@/components/common/Table";
-import { BranchDto } from "@/types/branch.types";
+import { BranchDto } from "@/types/branches.types";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { usePathname, useRouter } from "next/navigation";
 
@@ -34,6 +34,10 @@ const BranchTable: React.FC = () => {
     {
       title: "Staff Count",
       dataIndex: "staffCount",
+    },
+    {
+      title: "Item Count",
+      dataIndex: "itemCount",
     },
     {
       title: "Address",

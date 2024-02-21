@@ -5,4 +5,7 @@ export const endpoints = Object.freeze({
   },
   branches: "/branches",
   staff: "/staff",
+  products: "/products",
+  productTypes: "/product-types",
+  inventories: "/inventories",
 });
