@@ -98,7 +98,7 @@ const AddProductSpecificationSection: React.FC<
               }}
               className={mergeClassNames(
                 "input w-full join-item",
-                isError ? "input-error" : "input-primary"
+                isError ? "input-error" : "input-bordered"
               )}
             />
             <button
@@ -136,7 +136,7 @@ const AddProductSpecificationSection: React.FC<
               }}
               className={mergeClassNames(
                 "textarea w-full join-item text-base placeholder:text-base",
-                isError ? "textarea-error" : "textarea-primary"
+                isError ? "textarea-error" : "textarea-bordered"
               )}
             />
             <div className={"join"}>

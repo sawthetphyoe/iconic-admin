@@ -11,7 +11,6 @@ import PageTitle from "@/components/common/PageTitle";
 import Breadcrumbs from "@/components/common/Breadcrumbs";
 import Image from "next/image";
 import mergeClassNames from "@/utils/mergeClassnames";
-import { MdModeEdit } from "react-icons/md";
 
 const ProductDetailPage = () => {
   const params = useParams();
@@ -36,9 +35,10 @@ const ProductDetailPage = () => {
         <List>
           <header className={"w-full flex gap-4 items-center"}>
             <PageTitle title={"Product Details"} />
-            <button className={"btn btn-sm btn-ghost btn-circle"}>
-              <MdModeEdit size={20} />
-            </button>
+            {/*TODO : Edit product name and key features*/}
+            {/*<button className={"btn btn-sm btn-ghost btn-circle"}>*/}
+            {/*  <MdModeEdit size={20} />*/}
+            {/*</button>*/}
           </header>
           <List.Item label={"Product Name"} content={productDetail.name} />
           <List.Item
@@ -123,7 +123,8 @@ const ProductDetailPage = () => {
           </div>
         </div>
 
-        <button className={"btn text-error"}>Delete Product</button>
+        {/*TODO: Delete product (soft delete)*/}
+        {/*<button className={"btn text-error"}>Delete Product</button>*/}
       </div>
     </MainLayout>
   );

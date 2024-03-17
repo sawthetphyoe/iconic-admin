@@ -11,11 +11,19 @@ const ProductsPage: React.FC = () => {
       <div className={"main-container"}>
         <header className={"flex justify-between items-center w-full"}>
           <PageTitle title={"Products"} />
-          <Link href={"products/new"}>
-            <button className={"btn btn-primary"}>
-              <HiPlus size={20} /> New
-            </button>
-          </Link>
+          <div className={"flex gap-2 items-center"}>
+            <Link href={"products/collections"}>
+              <button className={"btn btn-link no-underline hover:underline"}>
+                Manage Collections
+              </button>
+            </Link>
+
+            <Link href={"products/new"}>
+              <button className={"btn btn-primary"}>
+                <HiPlus size={20} /> New
+              </button>
+            </Link>
+          </div>
         </header>
         <ProductsTable />
       </div>

@@ -56,21 +56,6 @@ function Table<T extends Record<string, any>>({
           </tr>
         </thead>
         {/* body */}
-        {/*{!loading && dataSource.length === 0 ? (*/}
-        {/*  // no data*/}
-        {/*  <tbody>*/}
-        {/*    <tr className={"bg-base-200 bg-opacity-20"}>*/}
-        {/*      <td*/}
-        {/*        colSpan={columns.length}*/}
-        {/*        className={*/}
-        {/*          "text-center py-8 font-semibold text-base text-base-content/50"*/}
-        {/*        }*/}
-        {/*      >*/}
-        {/*        No Data*/}
-        {/*      </td>*/}
-        {/*    </tr>*/}
-        {/*  </tbody>*/}
-        {/*) : (*/}
         <tbody className={"w-full relative"}>
           {/* loading */}
           {loading && (

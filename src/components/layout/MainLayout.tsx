@@ -18,9 +18,7 @@ const MainLayout: React.FC<React.HTMLProps<HTMLDivElement>> = ({
             parent: "Users",
             children: ["Staff", "Customers"],
           },
-          "Inventory",
-          "Orders",
-          "Settings",
+          "Payment Types",
         ]}
       />
       <main className={"flex flex-col w-[calc(100%-16rem)]"}>

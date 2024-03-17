@@ -18,7 +18,7 @@ import {
   updateName,
   updateProductType,
 } from "@/store";
-import useGetAllProductTypes from "@/hooks/product-types/useGetAllProductTypes";
+import useGetAllCollections from "@/hooks/collections/useGetAllCollections";
 import List from "@/components/common/List";
 import AddProductSpecificationSection from "@/components/products/AddProductSpecificationSection";
 import { useRouter } from "next/navigation";
@@ -58,7 +58,7 @@ const CreateProductForm: React.FC = () => {
     EditableSpec.Default
   );
 
-  const GetAllProductTypesQuery = useGetAllProductTypes();
+  const GetAllCollectionsQuery = useGetAllCollections();
 
   const CreateProductMutation = useCreateProduct();
 
@@ -77,6 +77,26 @@ const CreateProductForm: React.FC = () => {
   };
 
   const handleSubmit = () => {
+    if (productCreateForm.processors.length === 0) {
+      toast.error("Please add at least one processor.");
+      return;
+    }
+
+    if (productCreateForm.rams.length === 0) {
+      toast.error("Please add at least one ram.");
+      return;
+    }
+
+    if (productCreateForm.storages.length === 0) {
+      toast.error("Please add at least one storage.");
+      return;
+    }
+
+    if (productImages.length === 0) {
+      toast.error("Please add at least image.");
+      return;
+    }
+
     const payload: CreateProductRequestDto = {
       name: productCreateForm.name,
       productType: productCreateForm.productType,
@@ -96,7 +116,7 @@ const CreateProductForm: React.FC = () => {
   };
 
   const productTypesOptions: OptionType[] =
-    GetAllProductTypesQuery.data?.payload.map((productType) => ({
+    GetAllCollectionsQuery.data?.payload.map((productType) => ({
       label: productType.name,
       value: productType.id,
     })) || [];

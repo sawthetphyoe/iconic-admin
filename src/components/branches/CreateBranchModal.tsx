@@ -115,6 +115,9 @@ const CreateBranchModal: React.FC = () => {
           loading={
             CreateNewBranchMutation.isPending || !!CreateNewBranchMutation.data
           }
+          disabled={
+            CreateNewBranchMutation.isPending || !!CreateNewBranchMutation.data
+          }
         >
           Save
         </SubmitButton>

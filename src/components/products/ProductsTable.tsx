@@ -8,6 +8,7 @@ import getErrorMessageFromQuery from "@/utils/getErrorMessageFromQuery";
 import Table, { TableColumn } from "@/components/common/Table";
 import dayjs from "dayjs";
 import { usePathname, useRouter } from "next/navigation";
+import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 
 const ProductsTable: React.FC = () => {
   const router = useRouter();
@@ -48,6 +49,15 @@ const ProductsTable: React.FC = () => {
     {
       title: "Created By",
       dataIndex: "createdBy",
+    },
+    {
+      title: "",
+      dataIndex: "id",
+      render: () => (
+        <div className={"flex px-4 w-full justify-end"}>
+          <MdOutlineKeyboardArrowRight size={20} />
+        </div>
+      ),
     },
   ];
 
