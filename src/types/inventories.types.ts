@@ -1,5 +1,5 @@
 export type InventoryDto = {
-  id: string;
+  inventoryId: string;
   branch: {
     id: string;
     name: string;

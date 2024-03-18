@@ -14,6 +14,9 @@ import Form from "@/components/common/Form";
 import { useForm } from "react-hook-form";
 import useUpdateCollection from "@/hooks/collections/useUpdateCollection";
 import useDeleteCollection from "@/hooks/collections/useDeleteCollection";
+import mergeClassNames from "@/utils/mergeClassnames";
+import { LuClipboardEdit } from "react-icons/lu";
+import { MdDelete } from "react-icons/md";
 
 const ProductCollectionsTable: React.FC = () => {
   const [tableData, setTableData] = useState<ProductCollectionDto[]>([]);
@@ -153,7 +156,7 @@ const ProductCollectionsTable: React.FC = () => {
               className={"btn btn-outline"}
               onClick={() => setDeleteRecord(null)}
             >
-              Cancel
+              No
             </button>
             <button
               className="btn btn-error text-base-100"
@@ -202,7 +205,7 @@ const ProductCollectionsTable: React.FC = () => {
     {
       title: "",
       dataIndex: "id",
-      width: "10%",
+      // width: "10%",
       render: (_, record) => (
         <div className={"dropdown dropdown-end dropdown-left"}>
           <div tabIndex={0} role="button" className="btn btn-sm btn-ghost px-1">
@@ -212,7 +215,7 @@ const ProductCollectionsTable: React.FC = () => {
             tabIndex={0}
             className="dropdown-content z-[1] menu p-2 flex flex-col gap-2 shadow bg-base-100 rounded-box w-36"
           >
-            <li>
+            <li title={"Edit collection name"}>
               <button
                 className={"btn btn-sm font-medium"}
                 onClick={() => {
@@ -220,18 +223,29 @@ const ProductCollectionsTable: React.FC = () => {
                   closeDropdown();
                 }}
               >
+                <LuClipboardEdit />
                 Edit
               </button>
             </li>
-            <li>
+            <li
+              title={
+                record.productCount > 0
+                  ? "Cannot delete collection with assigned products"
+                  : "Delete collection"
+              }
+              className={mergeClassNames(
+                record.productCount > 0 && "!cursor-not-allowed"
+              )}
+            >
               <button
                 disabled={record.productCount > 0}
-                className={"btn btn-sm text-error font-medium"}
+                className={mergeClassNames("btn btn-sm text-error font-medium")}
                 onClick={() => {
                   setDeleteRecord(record);
                   closeDropdown();
                 }}
               >
+                <MdDelete />
                 Delete
               </button>
             </li>

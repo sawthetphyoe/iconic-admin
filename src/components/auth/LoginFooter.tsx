@@ -8,7 +8,7 @@ const LoginFooter: React.FC = () => {
         <p className="font-medium text-xs">
           <span className={"leading-10 text-sm"}>iCONIC Ltd.</span>
           <br />
-          Providing authorized &nbsp;
+          Providing authentic &nbsp;
           <Link
             href={"https://www.apple.com"}
             target={"_blank"}

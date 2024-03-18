@@ -37,6 +37,13 @@ export type BranchStaffResponseDto = PageableResponseDto<
 
 export type BranchItemRequestDto = BasePageableRequestDto<InventoryDto>;
 
-export type BranchItemResponseDto = PageableResponseDto<
-  Omit<InventoryDto, "branch">
->;
+export type BranchItemUpdateRequestDto = { quantity: number };
+
+export type BranchItemMoveRequestDto = {
+  fromBranch: string;
+  toBranch: string;
+  productVariant: string;
+  quantity: number;
+};
+
+export type BranchItemResponseDto = PageableResponseDto<InventoryDto>;
