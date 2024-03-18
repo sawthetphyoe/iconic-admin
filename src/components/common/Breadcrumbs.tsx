@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import mergeClassNames from "@/utils/mergeClassnames";
 
 type BreadcrumbsProps = {
   items: {
@@ -9,11 +10,15 @@ type BreadcrumbsProps = {
 };
 const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items }) => {
   return (
-    <div className="text-sm breadcrumbs">
+    <div className={mergeClassNames("text-sm breadcrumbs")}>
       <ul>
         {items.map((item, index) => (
           <li key={index}>
-            {item.link ? <Link href={item.link}>{item.name}</Link> : item.name}
+            {item.link ? (
+              <Link href={item.link}>{item.name}</Link>
+            ) : (
+              <span className={"font-semibold"}>{item.name}</span>
+            )}
           </li>
         ))}
       </ul>

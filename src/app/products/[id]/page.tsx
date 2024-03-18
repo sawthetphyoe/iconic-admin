@@ -11,6 +11,7 @@ import PageTitle from "@/components/common/PageTitle";
 import Breadcrumbs from "@/components/common/Breadcrumbs";
 import Image from "next/image";
 import mergeClassNames from "@/utils/mergeClassnames";
+import Link from "next/link";
 
 const ProductDetailPage = () => {
   const params = useParams();
@@ -32,14 +33,20 @@ const ProductDetailPage = () => {
         ]}
       />
       <div className={"main-container my-5"}>
-        <List>
-          <header className={"w-full flex gap-4 items-center"}>
+        <List className={"relative w-full"}>
+          <Link
+            href={`/products/${productDetail.id}/faqs`}
+            className={"absolute top-2 right-0"}
+          >
+            <button className={"btn btn-primary"}>Manage FAQs</button>
+          </Link>
+          <div className={"w-full flex gap-4 items-center"}>
             <PageTitle title={"Product Details"} />
             {/*TODO : Edit product name and key features*/}
             {/*<button className={"btn btn-sm btn-ghost btn-circle"}>*/}
             {/*  <MdModeEdit size={20} />*/}
             {/*</button>*/}
-          </header>
+          </div>
           <List.Item label={"Product Name"} content={productDetail.name} />
           <List.Item
             label={"Collection"}

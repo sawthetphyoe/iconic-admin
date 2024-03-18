@@ -37,6 +37,10 @@ input[type="number"] {
   @apply flex items-center justify-center;
 }
 
+.btn.btn-primary {
+  @apply  text-base-100;
+}
+
 .btn:not(.btn-sm, .btn-md, .btn-theme) {
   @apply min-w-[108px];
 }
