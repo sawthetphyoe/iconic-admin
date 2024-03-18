@@ -17,7 +17,7 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items }) => {
             {item.link ? (
               <Link href={item.link}>{item.name}</Link>
             ) : (
-              <span className={"font-semibold"}>{item.name}</span>
+              <span className={"font-medium"}>{item.name}</span>
             )}
           </li>
         ))}

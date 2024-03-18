@@ -20,7 +20,7 @@ const useGetAllBranchItems = (
   params: Partial<BranchItemRequestDto> & { id: string }
 ) =>
   useQuery({
-    queryKey: ["get-all-branch-items"],
+    queryKey: ["get-all-branch-items", params.id],
     queryFn: getAllBranchItems.bind(null, params),
   });
 

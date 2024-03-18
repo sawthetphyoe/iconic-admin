@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import mergeClassNames from "@/utils/mergeClassnames";
 
 export type TableColumn<T> = {
@@ -31,46 +31,43 @@ function Table<T extends Record<string, any>>({
   onRowClick = () => {},
   loading,
 }: TableProps<T>): React.ReactNode {
+  const [isClient, setIsClient] = React.useState(false);
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
   return (
-    <div
-      className={mergeClassNames(
-        "!overflow-x-scroll !w-full",
-        containerClassname
-      )}
-    >
-      <table className={mergeClassNames("!w-full table", className)}>
-        {/* head */}
-        <thead className={"w-full"}>
-          <tr
-            className={mergeClassNames("border-b-slate-500 border-opacity-20")}
-          >
-            {columns.map((column, index) => (
-              <th
-                key={index}
-                className={mergeClassNames("whitespace-nowrap", titleClassname)}
-                style={{ width: column.width }}
-              >
-                {column.title}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        {/* body */}
-        <tbody className={"w-full relative"}>
-          {/* loading */}
-          {loading && (
+    <div className={"w-full relative"}>
+      <div
+        className={mergeClassNames(
+          "!overflow-x-scroll !w-full",
+          containerClassname
+        )}
+      >
+        <table className={mergeClassNames("!w-full table", className)}>
+          {/* head */}
+          <thead className={"w-full"}>
             <tr
-              className={
-                "absolute top-0 left-0 w-full h-full z-10 bg-base-200 bg-opacity-20"
-              }
+              className={mergeClassNames(
+                "border-b-slate-500 border-opacity-20"
+              )}
             >
-              <th className={"w-full h-full flex items-center justify-center"}>
-                <span className="loading loading-dots loading-md text-neutral"></span>
-              </th>
+              {columns.map((column, index) => (
+                <th
+                  key={index}
+                  className={mergeClassNames(
+                    "whitespace-nowrap",
+                    titleClassname
+                  )}
+                  style={{ width: column.width }}
+                >
+                  {column.title}
+                </th>
+              ))}
             </tr>
-          )}
-          {!loading &&
-            (dataSource.length > 0 ? (
+          </thead>
+          {/* body */}
+          <tbody className={"w-full"}>
+            {dataSource.length > 0 ? (
               dataSource.map((record, i) => (
                 <tr
                   key={i}
@@ -103,9 +100,15 @@ function Table<T extends Record<string, any>>({
                   {!loading && "No Data"}
                 </td>
               </tr>
-            ))}
-        </tbody>
-      </table>
+            )}
+          </tbody>
+        </table>
+      </div>
+      {loading && isClient && (
+        <div className="absolute top-[44.5px] left-0 bg-base-200 bg-opacity-20 w-full h-[calc(100%-44.5px)] flex items-center justify-center">
+          <span className="loading loading-dots loading-md text-neutral"></span>
+        </div>
+      )}
     </div>
   );
 }
