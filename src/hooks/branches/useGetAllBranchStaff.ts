@@ -20,7 +20,7 @@ const useGetAllBranchStaff = (
   params: Partial<BranchStaffRequestDto> & { id: string }
 ) =>
   useQuery({
-    queryKey: ["get-all-branch-staff"],
+    queryKey: ["get-all-branch-staff", params.id],
     queryFn: getAllBranchStaff.bind(null, params),
   });
 
