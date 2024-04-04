@@ -14,53 +14,54 @@ import useGetAllCustomers from "@/hooks/customers/useGetAllCustomers";
 import { CustomerDto } from "@/types/customers.types";
 import { StaffDto } from "@/types/staff.types";
 import dayjs from "dayjs";
-type CustomersTableProps = {
-  dataSource: CustomerDto[];
+import { OrderDto, OrderItemDto } from "@/types/orders.types";
+type OrderItemsTableProps = {
+  dataSource: OrderItemDto[];
 };
 
-const CustomersTable: React.FC<CustomersTableProps> = ({ dataSource }) => {
-  const router = useRouter();
-  const pathname = usePathname();
-
-  const columns: TableColumn<CustomerDto>[] = [
+const OrderItemsTable: React.FC<OrderItemsTableProps> = ({ dataSource }) => {
+  const columns: TableColumn<OrderItemDto>[] = [
     {
       title: "No.",
       dataIndex: "id",
       render: (_, __, index) => index + 1,
     },
     {
-      title: "Name",
-      dataIndex: "name",
+      title: "Product Name",
+      dataIndex: "product",
+      render: (product: OrderItemDto["product"]) => product.name,
     },
     {
-      title: "Email",
-      dataIndex: "email",
+      title: "Color",
+      dataIndex: "product",
+      render: (product: OrderItemDto["product"]) => product.variant.color,
     },
     {
-      title: "Phone Number",
-      dataIndex: "phone",
+      title: "Processor",
+      dataIndex: "product",
+      render: (product: OrderItemDto["product"]) => product.variant.processor,
     },
     {
-      title: "Member Type",
-      dataIndex: "memberType",
+      title: "RAM",
+      dataIndex: "product",
+      render: (product: OrderItemDto["product"]) => product.variant.ram,
     },
     {
-      title: "Registered Date",
-      dataIndex: "createdAt",
-      render: (text) => dayjs(text).format("DD/MM/YYYY"),
+      title: "Storage",
+      dataIndex: "product",
+      render: (product: OrderItemDto["product"]) => product.variant.storage,
     },
     {
-      title: "Address",
-      dataIndex: "address",
+      title: "Price",
+      dataIndex: "price",
     },
     {
-      title: "",
-      dataIndex: "id",
-      render: () => (
-        <div className={"flex px-4 w-full justify-end"}>
-          <MdOutlineKeyboardArrowRight size={20} />
-        </div>
-      ),
+      title: "Quantity",
+      dataIndex: "quantity",
+    },
+    {
+      title: "Sub Total",
+      dataIndex: "subTotal",
     },
   ];
 
@@ -70,9 +71,8 @@ const CustomersTable: React.FC<CustomersTableProps> = ({ dataSource }) => {
       columns={columns}
       containerClassname={"w-full"}
       titleClassname={"text-sm font-semibold"}
-      rowClassname={"cursor-pointer"}
     />
   );
 };
 
-export default CustomersTable;
+export default OrderItemsTable;

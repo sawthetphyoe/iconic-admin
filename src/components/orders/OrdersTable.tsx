@@ -14,44 +14,42 @@ import useGetAllCustomers from "@/hooks/customers/useGetAllCustomers";
 import { CustomerDto } from "@/types/customers.types";
 import { StaffDto } from "@/types/staff.types";
 import dayjs from "dayjs";
-type CustomersTableProps = {
-  dataSource: CustomerDto[];
+import { OrderDto } from "@/types/orders.types";
+type OrdersTableProps = {
+  dataSource: OrderDto[];
 };
 
-const CustomersTable: React.FC<CustomersTableProps> = ({ dataSource }) => {
+const OrdersTable: React.FC<OrdersTableProps> = ({ dataSource }) => {
   const router = useRouter();
   const pathname = usePathname();
 
-  const columns: TableColumn<CustomerDto>[] = [
+  const columns: TableColumn<OrderDto>[] = [
     {
-      title: "No.",
+      title: "Order ID",
       dataIndex: "id",
-      render: (_, __, index) => index + 1,
     },
     {
-      title: "Name",
-      dataIndex: "name",
+      title: "Customer",
+      dataIndex: "customer",
     },
     {
-      title: "Email",
-      dataIndex: "email",
-    },
-    {
-      title: "Phone Number",
-      dataIndex: "phone",
-    },
-    {
-      title: "Member Type",
-      dataIndex: "memberType",
-    },
-    {
-      title: "Registered Date",
+      title: "Ordered Date",
       dataIndex: "createdAt",
       render: (text) => dayjs(text).format("DD/MM/YYYY"),
     },
     {
-      title: "Address",
-      dataIndex: "address",
+      title: "Status",
+      dataIndex: "status",
+    },
+    {
+      title: "No. of Items",
+      dataIndex: "orderItems",
+      render: (orderItems: OrderDto["orderItems"]) =>
+        orderItems.reduce((acc, item) => acc + item.quantity, 0),
+    },
+    {
+      title: "Total Amount",
+      dataIndex: "totalAmount",
     },
     {
       title: "",
@@ -71,8 +69,11 @@ const CustomersTable: React.FC<CustomersTableProps> = ({ dataSource }) => {
       containerClassname={"w-full"}
       titleClassname={"text-sm font-semibold"}
       rowClassname={"cursor-pointer"}
+      onRowClick={(record) => {
+        router.push(`${pathname}/${record.id}`);
+      }}
     />
   );
 };
 
-export default CustomersTable;
+export default OrdersTable;

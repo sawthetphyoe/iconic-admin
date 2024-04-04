@@ -30,7 +30,7 @@ input[type="number"] {
 }
 
 .main-container {
-  @apply w-full flex flex-col gap-12 items-start;
+  @apply w-full flex flex-col gap-10 items-start;
 }
 
 .btn{
