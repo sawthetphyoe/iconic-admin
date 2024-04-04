@@ -8,4 +8,6 @@ export const endpoints = Object.freeze({
   products: "/products",
   collections: "/product-types",
   inventories: "/inventories",
+  paymentTypes: "/payment-types",
+  memberTypes: "/member-types",
 });

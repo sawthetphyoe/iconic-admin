@@ -32,11 +32,11 @@ const BranchTable: React.FC = () => {
       dataIndex: "name",
     },
     {
-      title: "Staff Count",
+      title: "No. of Staff",
       dataIndex: "staffCount",
     },
     {
-      title: "Item Count",
+      title: "No. of Products",
       dataIndex: "itemCount",
     },
     {

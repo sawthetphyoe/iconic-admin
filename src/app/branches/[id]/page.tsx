@@ -69,7 +69,7 @@ const BranchDetailsPage: React.FC = () => {
 
         <section className={"w-full flex flex-col items-start gap-4"}>
           <div className={"flex justify-between w-full items-center"}>
-            <h2 className={"font-semibold text-xl"}>Items</h2>
+            <h2 className={"font-semibold text-xl"}>Products</h2>
             <AddItemModal
               products={GetAllProductsQuery.data.payload}
               branch={GetBranchDetailsQuery.data.payload}
