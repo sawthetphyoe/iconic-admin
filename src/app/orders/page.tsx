@@ -7,27 +7,30 @@ import CustomersTable from "@/components/users/customers/CustomersTable";
 import useGetAllCustomers from "@/hooks/customers/useGetAllCustomers";
 import Loading from "@/components/common/Loading";
 import Error from "@/components/common/Error";
+import OrdersTable from "@/components/orders/OrdersTable";
+import useGetAllOrders from "@/hooks/orders/useGetAllOrders";
 
-const CustomersPage: React.FC = () => {
-  const GetAllCustomersQuery = useGetAllCustomers();
+const OrdersPage: React.FC = () => {
+  const GetAllOrdersQuery = useGetAllOrders();
 
-  if (GetAllCustomersQuery.isPending) return <Loading />;
+  if (GetAllOrdersQuery.isPending) return <Loading />;
 
-  if (GetAllCustomersQuery.isError) return <Error />;
+  if (GetAllOrdersQuery.isError) return <Error />;
 
-  const dataSource = GetAllCustomersQuery.data.payload;
+  const dataSource = GetAllOrdersQuery.data.payload;
+
   return (
     <MainLayout>
       <div className={"main-container"}>
         <section className={"flex justify-between w-full items-center"}>
-          <PageTitle title={"Customers"} />
+          <PageTitle title={"Orders"} />
         </section>
         <section
           className={
             "w-full flex flex-col overflow-x-scroll gap-8 items-center"
           }
         >
-          <CustomersTable dataSource={dataSource} />
+          <OrdersTable dataSource={dataSource} />
           {/*<Pagination*/}
           {/*  currentPage={staffData.currentPage}*/}
           {/*  currentSize={staffData.currentSize}*/}
@@ -43,4 +46,4 @@ const CustomersPage: React.FC = () => {
   );
 };
 
-export default CustomersPage;
+export default OrdersPage;

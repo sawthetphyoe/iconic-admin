@@ -11,7 +11,7 @@ const NewProductPage: React.FC = () => {
         items={[{ name: "Products", link: "/products" }, { name: "New" }]}
       />
       <div className={"main-container my-5"}>
-        <PageTitle title={"Add New Product"} />
+        <PageTitle title={"Create New Product"} />
         <CreateProductForm />
       </div>
     </MainLayout>

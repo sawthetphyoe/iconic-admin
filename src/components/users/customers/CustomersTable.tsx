@@ -8,36 +8,46 @@ import Table, { TableColumn } from "@/components/common/Table";
 import { BranchDto } from "@/types/branches.types";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { usePathname, useRouter } from "next/navigation";
+import useGetAllPaymentTypes from "@/hooks/payment-types/useGetAllPaymentTypes";
+import { PaymentTypeDto } from "@/types/paymentType.types";
+import useGetAllCustomers from "@/hooks/customers/useGetAllCustomers";
+import { CustomerDto } from "@/types/customers.types";
+import { StaffDto } from "@/types/staff.types";
+import dayjs from "dayjs";
+type CustomersTableProps = {
+  dataSource: CustomerDto[];
+};
 
-const BranchTable: React.FC = () => {
+const CustomersTable: React.FC<CustomersTableProps> = ({ dataSource }) => {
   const router = useRouter();
   const pathname = usePathname();
 
-  const GetAllBranchesQuery = useGetAllBranches();
-
-  if (GetAllBranchesQuery.isPending) return <Loading />;
-
-  if (GetAllBranchesQuery.isError) return <Error />;
-
-  const dataSources = GetAllBranchesQuery.data.payload;
-
-  const columns: TableColumn<BranchDto>[] = [
+  const columns: TableColumn<CustomerDto>[] = [
     {
       title: "No.",
       dataIndex: "id",
       render: (_, __, index) => index + 1,
     },
     {
-      title: "Branch Name",
+      title: "Name",
       dataIndex: "name",
     },
     {
-      title: "No. of Staff",
-      dataIndex: "staffCount",
+      title: "Email",
+      dataIndex: "email",
     },
     {
-      title: "No. of Products",
-      dataIndex: "itemCount",
+      title: "Phone Number",
+      dataIndex: "phone",
+    },
+    {
+      title: "Member Type",
+      dataIndex: "memberType",
+    },
+    {
+      title: "Registered Date",
+      dataIndex: "createdAt",
+      render: (text) => dayjs(text).format("DD/MM/YYYY"),
     },
     {
       title: "Address",
@@ -56,16 +66,13 @@ const BranchTable: React.FC = () => {
 
   return (
     <Table
-      dataSource={dataSources}
+      dataSource={dataSource}
       columns={columns}
       containerClassname={"w-full"}
       titleClassname={"text-sm font-semibold"}
       rowClassname={"cursor-pointer"}
-      onRowClick={(record) => {
-        router.push(`${pathname}/${record.id}`);
-      }}
     />
   );
 };
 
-export default BranchTable;
+export default CustomersTable;

@@ -108,17 +108,17 @@ const AddItemModal: React.FC<AddItemModalProps> = ({ branch, products }) => {
 
   return (
     <Modal
-      id={"create-branch-modal"}
+      id={"add-product-modal"}
       open={modalOpen}
       setOpen={setModalOpen}
       closeIcon
       openButton={
         <button className={"btn text-primary btn-sm btn-ghost h-[40px]"}>
           <HiPlus size={20} />
-          Add Item
+          Add Product
         </button>
       }
-      title={`Add Item - ${branch.name}`}
+      title={`Add Product - ${branch.name}`}
       actionOnClose={() => {
         methods.reset();
         setAddItemFrom({ ...initialAddItemForm, branch: branch.id });

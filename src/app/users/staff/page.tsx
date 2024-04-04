@@ -9,6 +9,7 @@ import MainLayout from "@/components/layout/MainLayout";
 import CreateStaffModal from "@/components/users/staff/CreateStaffModal";
 import StaffTable from "@/components/users/staff/StaffTable";
 import PageTitle from "@/components/common/PageTitle";
+import Pagination from "@/components/common/Pagination";
 
 const StaffPage: React.FC = () => {
   const [staffFilterData, setStaffFilterData] = useState<

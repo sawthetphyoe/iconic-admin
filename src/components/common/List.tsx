@@ -33,7 +33,7 @@ const ListItem: React.FC<ListItemProps> = ({ label, content }) => (
 );
 
 const List: ListCompoundProps = ({ children, className }) => {
-  return <ul className={mergeClassNames(className)}>{children}</ul>;
+  return <ul className={mergeClassNames(className, "text-sm")}>{children}</ul>;
 };
 
 List.Item = ListItem;

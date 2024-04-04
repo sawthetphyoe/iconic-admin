@@ -12,13 +12,15 @@ const MainLayout: React.FC<React.HTMLProps<HTMLDivElement>> = ({
       <SideNavMenu
         items={[
           { name: "Dashboard", link: "/" },
-          "Products",
-          "Branches",
           {
             parent: "Users",
             children: ["Staff", "Customers"],
           },
+          "Products",
+          "Orders",
+          "Branches",
           "Payment Types",
+          "Member Types",
         ]}
       />
       <main className={"flex flex-col w-[calc(100%-16rem)]"}>
