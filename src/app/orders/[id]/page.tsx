@@ -83,6 +83,10 @@ const OrderDetailsPage: React.FC = () => {
               content={GetOrderDetailsQuery.data.payload.status}
             />
             <List.Item
+              label={"Payment Method"}
+              content={GetOrderDetailsQuery.data.payload.paymentType}
+            />
+            <List.Item
               label={"Order Date"}
               content={dayjs(
                 GetOrderDetailsQuery.data.payload.createdAt
