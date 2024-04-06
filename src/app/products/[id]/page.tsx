@@ -41,13 +41,12 @@ const ProductDetailPage = () => {
             <button className={"btn btn-primary"}>Manage FAQs</button>
           </Link>
           <div className={"w-full flex gap-4 items-center"}>
-            <PageTitle title={"Product Details"} />
+            <PageTitle title={productDetail.name} />
             {/*TODO : Edit product name and key features*/}
             {/*<button className={"btn btn-sm btn-ghost btn-circle"}>*/}
             {/*  <MdModeEdit size={20} />*/}
             {/*</button>*/}
           </div>
-          <List.Item label={"Product Name"} content={productDetail.name} />
           <List.Item
             label={"Collection"}
             content={productDetail.productType.name}
@@ -66,24 +65,8 @@ const ProductDetailPage = () => {
           />
         </List>
 
-        <div className={"flex flex-col gap-2 w-full max-w-2xl"}>
-          <h2 className={"font-semibold text-lg"}>Key Features</h2>
-          <ul className={"flex flex-col gap-3"}>
-            {productDetail.keyFeatures.map((feature, index) => (
-              <li key={index} className={"flex items-start gap-5"}>
-                <div
-                  className={"w-2 h-2 my-3 bg-base-content/75 rounded-full"}
-                ></div>
-                <span className={"leading-8 flex-1 text-base-content/75"}>
-                  {feature}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className={"w-[90%] flex flex-col mt-2 gap-4"}>
-          <h2 className={"font-semibold text-lg"}>Display Images</h2>
+        <div className={"w-[90%] flex flex-col mt-4 gap-4"}>
+          <h2 className={"font-semibold text-lg mb-2"}>Display Images</h2>
           <div className={"w-full grid grid-cols-3 gap-8"}>
             {productDetail.images.map((img, index) => {
               return (
@@ -128,6 +111,24 @@ const ProductDetailPage = () => {
               );
             })}
           </div>
+        </div>
+
+        <div className={"flex flex-col gap-2 w-full mt-4 max-w-2xl"}>
+          <h2 className={"font-semibold text-lg mb-2"}>Key Features</h2>
+          <ul className={"flex flex-col gap-3"}>
+            {productDetail.keyFeatures.map((feature, index) => (
+              <li key={index} className={"flex items-start gap-5"}>
+                <div
+                  className={"w-2 h-2 my-3 bg-base-content/75 rounded-full"}
+                ></div>
+                <span
+                  className={"leading-8 text-sm flex-1 text-base-content/75"}
+                >
+                  {feature}
+                </span>
+              </li>
+            ))}
+          </ul>
         </div>
 
         {/*TODO: Delete product (soft delete)*/}

@@ -35,7 +35,7 @@ const Modal: React.FC<ModalProps> = ({
       >
         <div className={mergeClassNames("modal-box w-full", width)}>
           <div className={"flex justify-between items-center mb-6"}>
-            {title && <h3 className="font-bold text-xl">{title}</h3>}
+            {title && <h3 className="font-bold text-lg">{title}</h3>}
             {closeIcon && (
               <form method="dialog" onSubmit={() => actionOnClose()}>
                 <button

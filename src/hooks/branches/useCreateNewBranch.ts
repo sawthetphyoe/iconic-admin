@@ -14,7 +14,7 @@ const createNewBranch = async (
 const useCreateNewBranch = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationKey: ["create-new-branch"],
+    mutationKey: ["create-add-items-branch"],
     mutationFn: createNewBranch,
     onSuccess: async () => {
       await queryClient.invalidateQueries({

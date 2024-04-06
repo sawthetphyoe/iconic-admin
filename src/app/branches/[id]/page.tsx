@@ -12,7 +12,7 @@ import List from "@/components/common/List";
 import DeleteBranchModal from "@/components/branches/DeleteBranchModal";
 import BranchStaffTable from "@/components/branches/BranchStaffTable";
 import BranchItemsTable from "@/components/branches/BranchItemsTable";
-import AddItemModal from "@/components/branches/AddItemModal";
+import AddItemModal from "@/components/inventory/AddItemModal";
 import PageTitle from "@/components/common/PageTitle";
 import useGetAllProducts from "@/hooks/products/useGetAllProducts";
 
@@ -70,10 +70,6 @@ const BranchDetailsPage: React.FC = () => {
         <section className={"w-full flex flex-col items-start gap-4"}>
           <div className={"flex justify-between w-full items-center"}>
             <h2 className={"font-semibold text-xl"}>Products</h2>
-            <AddItemModal
-              products={GetAllProductsQuery.data.payload}
-              branch={GetBranchDetailsQuery.data.payload}
-            />
           </div>
           <BranchItemsTable />
         </section>

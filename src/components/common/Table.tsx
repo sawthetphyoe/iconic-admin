@@ -81,7 +81,11 @@ function Table<T extends Record<string, any>>({
                   }}
                 >
                   {columns.map((column, index) => (
-                    <td key={index} className={"whitespace-nowrap"}>
+                    <td
+                      key={index}
+                      className={"whitespace-nowrap"}
+                      style={{ width: column.width }}
+                    >
                       {typeof column.render === "function"
                         ? column.render(record[column.dataIndex], record, i)
                         : record[column.dataIndex]}

@@ -44,20 +44,22 @@ const ProfileDropdown: React.FC = () => {
               <span>{currentUser.fullName?.charAt(0)}</span>
             </div>
           </div>
-          <h1 className={"text-md font-medium my-6"}>{currentUser.fullName}</h1>
+          <h1 className={"text-base font-medium my-6"}>
+            {currentUser.fullName}
+          </h1>
         </div>
         <ul
           tabIndex={0}
           className="dropdown-content z-[1] flex flex-col gap-2 menu p-4 ring-[0.2px] shadow-sm bg-base-100 rounded-box w-52"
         >
           <li>
-            <Link href={"/auth/me"} className={"text-base font-medium"}>
+            <Link href={"/auth/me"} className={"text-sm font-medium"}>
               Profile
             </Link>
           </li>
           <hr className={"opacity-80 bg-primary"} />
           <li>
-            <Link href={"/auth/login"} className={"text-base font-medium"}>
+            <Link href={"/auth/login"} className={"text-sm font-medium"}>
               Logout
             </Link>
           </li>

@@ -17,8 +17,9 @@ const MainLayout: React.FC<React.HTMLProps<HTMLDivElement>> = ({
             children: ["Staff", "Customers"],
           },
           "Products",
-          "Orders",
+          "Inventory",
           "Branches",
+          "Orders",
           "Payment Types",
           "Member Types",
         ]}

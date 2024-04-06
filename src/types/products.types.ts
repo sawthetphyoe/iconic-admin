@@ -35,6 +35,28 @@ export type ProductDto = {
   updatedBy?: string;
 };
 
+export type ProductVariantDto = {
+  id: string;
+  product: {
+    id: string;
+    name: string;
+    productType: {
+      id: string;
+      name: string;
+    };
+  };
+  color: string;
+  image: ProductColorImageDto;
+  processor: string;
+  ram: string;
+  storage: string;
+  price: number;
+  createdAt: string;
+  createdBy: string;
+  updatedAt?: string;
+  updatedBy?: string;
+};
+
 export type SearchProductRequestDto = {
   page: number;
   size: number;
@@ -43,6 +65,30 @@ export type SearchProductRequestDto = {
   sort: "desc" | "asc";
   order: keyof ProductDto;
 };
+
+export type ProductFAQDto = {
+  id: string;
+  product: {
+    id: string;
+    name: string;
+  };
+  question: string;
+  answer: string;
+  createdAt: string;
+  createdBy: string;
+};
+
+export type CreateProductFAQRequestDto = {
+  product: string;
+  question: string;
+  answer: string;
+};
+
+export type ProductFAQListResponseDto = ResponseDto<ProductFAQDto>;
+
+export type GetProductVariantDetailsDto = ResponseDto<ProductVariantDto>;
+
+export type GetAllProductVariantsDto = ResponseDto<ProductVariantDto[]>;
 
 export type GetAllProductResponseDto = ResponseDto<ProductDto[]>;
 

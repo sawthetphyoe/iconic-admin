@@ -20,6 +20,9 @@ const useAddProductToInventory = () => {
       await queryClient.invalidateQueries({
         queryKey: ["get-all-branch-items"],
       });
+      await queryClient.invalidateQueries({
+        queryKey: ["get-inventories"],
+      });
     },
   });
 };

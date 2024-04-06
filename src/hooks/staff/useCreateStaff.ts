@@ -14,7 +14,7 @@ const createStaff = async (
 const useCreateStaff = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationKey: ["create-new-staff"],
+    mutationKey: ["create-add-items-staff"],
     mutationFn: createStaff,
     onSuccess: async () => {
       await queryClient.invalidateQueries({

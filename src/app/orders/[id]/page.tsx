@@ -12,7 +12,7 @@ import List from "@/components/common/List";
 import DeleteBranchModal from "@/components/branches/DeleteBranchModal";
 import BranchStaffTable from "@/components/branches/BranchStaffTable";
 import BranchItemsTable from "@/components/branches/BranchItemsTable";
-import AddItemModal from "@/components/branches/AddItemModal";
+import AddItemModal from "@/components/inventory/AddItemModal";
 import PageTitle from "@/components/common/PageTitle";
 import useGetAllProducts from "@/hooks/products/useGetAllProducts";
 import useGetOrderDetails from "@/hooks/orders/useGetOrderDetails";
