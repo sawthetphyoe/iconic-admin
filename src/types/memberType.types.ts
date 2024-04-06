@@ -8,6 +8,7 @@ export type MemberTypeCreateRequestDto = {
 export type MemberTypeDto = {
   id: string;
   name: string;
+  customerCount: number;
   minAmount: number;
   createdAt: string;
   createdBy: string;

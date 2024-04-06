@@ -35,18 +35,8 @@ const PaymentTypesTable: React.FC = () => {
     },
     {
       title: "No. of Orders",
-      dataIndex: "id",
-      render: () => "—",
+      dataIndex: "orderCount",
     },
-    // {
-    //   title: "",
-    //   dataIndex: "id",
-    //   render: () => (
-    //     <div className={"flex px-4 w-full justify-end"}>
-    //       <MdOutlineKeyboardArrowRight size={20} />
-    //     </div>
-    //   ),
-    // },
   ];
 
   return (

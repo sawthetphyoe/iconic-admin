@@ -7,6 +7,7 @@ export type PaymentTypeCreateRequestDto = {
 export type PaymentTypeDto = {
   id: string;
   name: string;
+  orderCount: number;
   createdAt: string;
   createdBy: string;
   updatedAt: string;

@@ -76,7 +76,7 @@ const ApproveOrderModal: React.FC<ApproveOrderModalProps> = ({ order }) => {
               </div>
               <div>
                 <select
-                  className={"select select-bordered w-[260px]"}
+                  className={"select select-primary select-bordered w-[260px]"}
                   value={
                     approveOrderItems.find(
                       (item) =>

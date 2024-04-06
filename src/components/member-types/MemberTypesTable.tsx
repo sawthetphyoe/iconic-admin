@@ -41,8 +41,7 @@ const MemberTypesTable: React.FC = () => {
     },
     {
       title: "No. of Customers",
-      dataIndex: "id",
-      render: () => "—",
+      dataIndex: "customerCount",
     },
     // {
     //   title: "",

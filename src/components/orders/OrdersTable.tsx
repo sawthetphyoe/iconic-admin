@@ -33,13 +33,12 @@ const OrdersTable: React.FC<OrdersTableProps> = ({ dataSource }) => {
       dataIndex: "customer",
     },
     {
-      title: "Ordered Date",
-      dataIndex: "createdAt",
-      render: (text) => dayjs(text).format("DD/MM/YYYY"),
-    },
-    {
       title: "Status",
       dataIndex: "status",
+    },
+    {
+      title: "Payment Method",
+      dataIndex: "paymentType",
     },
     {
       title: "No. of Items",
@@ -50,6 +49,11 @@ const OrdersTable: React.FC<OrdersTableProps> = ({ dataSource }) => {
     {
       title: "Total Amount",
       dataIndex: "totalAmount",
+    },
+    {
+      title: "Ordered Date",
+      dataIndex: "createdAt",
+      render: (text) => dayjs(text).format("DD/MM/YYYY"),
     },
     {
       title: "",
