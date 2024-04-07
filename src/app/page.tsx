@@ -34,7 +34,9 @@ export default function Home() {
           >
             <div className={"flex flex-col gap-2"}>
               <h3 className={"font-medium text-sm"}>Today Orders</h3>
-              <p>{GetReportsQuery.data.payload.todayOrders}</p>
+              <p className={"font-semibold text-xl text-base-content/80"}>
+                {GetReportsQuery.data.payload.todayOrders}
+              </p>
             </div>
             <MdToday className={"text-primary"} size={30} />
           </div>
@@ -46,7 +48,9 @@ export default function Home() {
           >
             <div className={"flex flex-col gap-2"}>
               <h3 className={"font-medium text-sm"}>Total Orders</h3>
-              <p>{GetReportsQuery.data.payload.totalOrders}</p>
+              <p className={"font-semibold text-xl text-base-content/80"}>
+                {GetReportsQuery.data.payload.totalOrders}
+              </p>
             </div>
             <FaList className={"text-primary"} size={30} />
           </div>
@@ -57,8 +61,10 @@ export default function Home() {
             }
           >
             <div className={"flex flex-col gap-2"}>
-              <h3 className={"font-medium text-sm"}>Total Customers</h3>
-              <p>{GetReportsQuery.data.payload.totalCustomers}</p>
+              <h3 className={"font-medium text-sm"}>No. of Customers</h3>
+              <p className={"font-semibold text-xl text-base-content/80"}>
+                {GetReportsQuery.data.payload.totalCustomers}
+              </p>
             </div>
             <TbUsersGroup className={"text-primary"} size={30} />
           </div>

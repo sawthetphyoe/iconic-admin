@@ -16,6 +16,8 @@ import {
 
 import { Line } from "react-chartjs-2";
 import dayjs from "dayjs";
+import { getCookie, hasCookie } from "cookies-next";
+import { DARK_THEME } from "@/lib/constants";
 
 type MonthlyOrderChartProps = {
   dataList: number[];
@@ -71,7 +73,10 @@ const MonthlyOrderChart: React.FC<MonthlyOrderChartProps> = ({
         display: false,
       },
       title: {
-        color: "rgb(22,22,22)",
+        color:
+          hasCookie("theme") && getCookie("theme") === DARK_THEME
+            ? "#a6adbb"
+            : "#161616",
         display: true,
         text: `Orders in ${dayjs(new Date()).format("MMMM")}`,
         align: "start",
@@ -86,6 +91,7 @@ const MonthlyOrderChart: React.FC<MonthlyOrderChartProps> = ({
       tooltip: {
         padding: 16,
         titleMarginBottom: 8,
+        boxPadding: 8,
         callbacks: {
           title(tooltipItems): string | string[] | void {
             const date = new Date();
@@ -109,12 +115,20 @@ const MonthlyOrderChart: React.FC<MonthlyOrderChartProps> = ({
         fill: true,
         label: "Orders",
         data: dataList,
-        borderColor: "#45AEEE",
+        borderColor:
+          hasCookie("theme") && getCookie("theme") === DARK_THEME
+            ? "#7480ff"
+            : "#45AEEE",
         borderWidth: 2,
-        pointBackgroundColor: "#45AEEE",
+        pointBackgroundColor:
+          hasCookie("theme") && getCookie("theme") === DARK_THEME
+            ? "#7480ff"
+            : "#45AEEE",
         backgroundColor: (context) => {
           const bgColor = [
-            "rgba(255, 255, 255, 0.7)",
+            hasCookie("theme") && getCookie("theme") === DARK_THEME
+              ? "rgba(29,35,42,0.7)"
+              : "rgba(255, 255, 255, 0.7)",
             "rgba(91, 143, 249, 0.2)",
           ];
           if (!context.chart.chartArea) return;
