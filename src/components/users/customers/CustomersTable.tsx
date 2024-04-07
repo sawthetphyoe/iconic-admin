@@ -53,15 +53,15 @@ const CustomersTable: React.FC<CustomersTableProps> = ({ dataSource }) => {
       title: "Address",
       dataIndex: "address",
     },
-    {
-      title: "",
-      dataIndex: "id",
-      render: () => (
-        <div className={"flex px-4 w-full justify-end"}>
-          <MdOutlineKeyboardArrowRight size={20} />
-        </div>
-      ),
-    },
+    // {
+    //   title: "",
+    //   dataIndex: "id",
+    //   render: () => (
+    //     <div className={"flex px-4 w-full justify-end"}>
+    //       <MdOutlineKeyboardArrowRight size={20} />
+    //     </div>
+    //   ),
+    // },
   ];
 
   return (
