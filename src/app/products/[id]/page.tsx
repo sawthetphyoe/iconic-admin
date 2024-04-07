@@ -113,7 +113,7 @@ const ProductDetailPage = () => {
           </div>
         </div>
 
-        <div className={"flex flex-col gap-2 w-full mt-4 max-w-2xl"}>
+        <div className={"flex flex-col gap-2 w-full mt-4 max-w-5xl"}>
           <h2 className={"font-semibold text-lg mb-2"}>Key Features</h2>
           <ul className={"flex flex-col gap-3"}>
             {productDetail.keyFeatures.map((feature, index) => (
