@@ -25,11 +25,15 @@ type CompoundFormProps<T extends FieldValues> = FormProps<T> & {
   SubmitButton?: React.FC<SubmitButtonProps>;
 };
 
-type TextFieldProps<T> = Omit<React.HTMLProps<HTMLInputElement>, "onChange"> & {
+type TextFieldProps<T> = Omit<
+  React.HTMLProps<HTMLInputElement | HTMLTextAreaElement>,
+  "onChange"
+> & {
   name: keyof T;
   wrapperClassName?: string;
   onFieldChange: (value: string) => void;
   label?: string;
+  variant?: "input" | "textarea";
   rules?: Omit<
     RegisterOptions<FieldValues, string>,
     "valueAsNumber" | "valueAsDate" | "setValueAs" | "disabled"
@@ -63,6 +67,7 @@ function TextField<T>({
   wrapperClassName,
   onFieldChange,
   required,
+  variant = "input",
   ...props
 }: TextFieldProps<T>) {
   const { control } = useFormContext();
@@ -85,21 +90,54 @@ function TextField<T>({
           {required && !props.readOnly && <span className="text-error">*</span>}
         </label>
       )}
-      <input
-        id={name}
-        name={name}
-        className={mergeClassNames(
-          "input input-bordered input-primary w-full",
-          className
-        )}
-        {...props}
-        ref={field.ref}
-        value={field.value}
-        onChange={(e) => {
-          field.onChange(e.target.value);
-          onFieldChange(e.target.value);
-        }}
-      />
+      {variant === "textarea" ? (
+        <textarea
+          id={name}
+          name={name}
+          className={mergeClassNames(
+            "textarea textarea-bordered text-base textarea-primary w-full",
+            className
+          )}
+          {...props}
+          ref={field.ref}
+          value={field.value}
+          onChange={(e) => {
+            field.onChange(e.target.value);
+            onFieldChange(e.target.value);
+          }}
+        ></textarea>
+      ) : (
+        <input
+          id={name}
+          name={name}
+          className={mergeClassNames(
+            "input input-bordered input-primary w-full",
+            className
+          )}
+          {...props}
+          ref={field.ref}
+          value={field.value}
+          onChange={(e) => {
+            field.onChange(e.target.value);
+            onFieldChange(e.target.value);
+          }}
+        />
+      )}
+      {/*<input*/}
+      {/*  id={name}*/}
+      {/*  name={name}*/}
+      {/*  className={mergeClassNames(*/}
+      {/*    "input input-bordered input-primary w-full",*/}
+      {/*    className*/}
+      {/*  )}*/}
+      {/*  {...props}*/}
+      {/*  ref={field.ref}*/}
+      {/*  value={field.value}*/}
+      {/*  onChange={(e) => {*/}
+      {/*    field.onChange(e.target.value);*/}
+      {/*    onFieldChange(e.target.value);*/}
+      {/*  }}*/}
+      {/*/>*/}
       <div className="mr-1 h-4 mt-[2px]">
         {fieldState.error && (
           <p

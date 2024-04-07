@@ -13,4 +13,5 @@ export const endpoints = Object.freeze({
   paymentTypes: "/payment-types",
   memberTypes: "/member-types",
   productVariants: "/product-variants",
+  productFaqs: "/product-faqs",
 });

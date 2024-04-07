@@ -84,7 +84,7 @@ export type CreateProductFAQRequestDto = {
   answer: string;
 };
 
-export type ProductFAQListResponseDto = ResponseDto<ProductFAQDto>;
+export type ProductFAQListResponseDto = ResponseDto<ProductFAQDto[]>;
 
 export type GetProductVariantDetailsDto = ResponseDto<ProductVariantDto>;
 
