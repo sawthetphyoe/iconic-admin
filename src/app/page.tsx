@@ -34,7 +34,7 @@ export default function Home() {
           >
             <div className={"flex flex-col gap-2"}>
               <h3 className={"font-medium text-sm"}>Today Orders</h3>
-              <p className={"font-semibold text-xl text-base-content/80"}>
+              <p className={"font-semibold text-base text-base-content/80"}>
                 {GetReportsQuery.data.payload.todayOrders}
               </p>
             </div>
@@ -48,7 +48,7 @@ export default function Home() {
           >
             <div className={"flex flex-col gap-2"}>
               <h3 className={"font-medium text-sm"}>Total Orders</h3>
-              <p className={"font-semibold text-xl text-base-content/80"}>
+              <p className={"font-semibold text-base text-base-content/80"}>
                 {GetReportsQuery.data.payload.totalOrders}
               </p>
             </div>
@@ -62,7 +62,7 @@ export default function Home() {
           >
             <div className={"flex flex-col gap-2"}>
               <h3 className={"font-medium text-sm"}>No. of Customers</h3>
-              <p className={"font-semibold text-xl text-base-content/80"}>
+              <p className={"font-semibold text-base text-base-content/80"}>
                 {GetReportsQuery.data.payload.totalCustomers}
               </p>
             </div>

@@ -47,7 +47,11 @@ const OrdersPage: React.FC = () => {
         isMatch = isMatch && item.id.includes(filterObject.orderId);
       }
       if (filterObject.customerName) {
-        isMatch = isMatch && item.customer.includes(filterObject.customerName);
+        isMatch =
+          isMatch &&
+          item.customer
+            .toLowerCase()
+            .includes(filterObject.customerName.toLowerCase());
       }
       if (filterObject.status !== "all") {
         isMatch = isMatch && item.status === filterObject.status;
