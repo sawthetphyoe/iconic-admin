@@ -7,11 +7,12 @@ import CustomersTable from "@/components/users/customers/CustomersTable";
 import useGetAllCustomers from "@/hooks/customers/useGetAllCustomers";
 import Loading from "@/components/common/Loading";
 import Error from "@/components/common/Error";
+import LoadingPage from "@/app/loading";
 
 const CustomersPage: React.FC = () => {
   const GetAllCustomersQuery = useGetAllCustomers();
 
-  if (GetAllCustomersQuery.isPending) return <Loading />;
+  if (GetAllCustomersQuery.isPending) return <LoadingPage />;
 
   if (GetAllCustomersQuery.isError) return <Error />;
 

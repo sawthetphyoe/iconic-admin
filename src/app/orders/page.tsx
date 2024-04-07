@@ -9,11 +9,12 @@ import Loading from "@/components/common/Loading";
 import Error from "@/components/common/Error";
 import OrdersTable from "@/components/orders/OrdersTable";
 import useGetAllOrders from "@/hooks/orders/useGetAllOrders";
+import LoadingPage from "@/app/loading";
 
 const OrdersPage: React.FC = () => {
   const GetAllOrdersQuery = useGetAllOrders();
 
-  if (GetAllOrdersQuery.isPending) return <Loading />;
+  if (GetAllOrdersQuery.isPending) return <LoadingPage />;
 
   if (GetAllOrdersQuery.isError) return <Error />;
 

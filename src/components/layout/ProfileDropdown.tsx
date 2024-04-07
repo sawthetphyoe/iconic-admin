@@ -39,11 +39,11 @@ const ProfileDropdown: React.FC = () => {
     currentUser.id && (
       <div className="dropdown dropdown-end dropdown-hover">
         <div className={"flex items-center gap-3 cursor-pointer h-full"}>
-          <div className="avatar placeholder">
-            <div className="bg-neutral text-neutral-content rounded-full w-9">
-              <span>{currentUser.fullName?.charAt(0)}</span>
-            </div>
-          </div>
+          {/*<div className="avatar placeholder">*/}
+          {/*  <div className="bg-neutral text-neutral-content rounded-full w-9">*/}
+          {/*    <span>{currentUser.fullName?.charAt(0)}</span>*/}
+          {/*  </div>*/}
+          {/*</div>*/}
           <h1 className={"text-base font-medium my-6"}>
             {currentUser.fullName}
           </h1>
