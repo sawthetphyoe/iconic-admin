@@ -1,20 +1,48 @@
 "use client";
 
-import MainLayout from "@/components/layout/MainLayout";
-import React from "react";
-import { useParams } from "next/navigation";
-import useGetProductDetail from "@/hooks/products/useGetProductDetail";
-import LoadingPage from "@/app/loading";
 import ErrorPage from "@/app/error";
+import LoadingPage from "@/app/loading";
+import Breadcrumbs from "@/components/common/Breadcrumbs";
 import List from "@/components/common/List";
 import PageTitle from "@/components/common/PageTitle";
-import Breadcrumbs from "@/components/common/Breadcrumbs";
-import Image from "next/image";
+import MainLayout from "@/components/layout/MainLayout";
+import EditProductImageModal from "@/components/products/EditProductImageModal";
+import useGetProductDetail from "@/hooks/products/useGetProductDetail";
+import useUpdateProduct from "@/hooks/products/useUpdateProduct";
+import {
+  EditProductImageFormFields,
+  UpdateProductRequestDto,
+} from "@/types/products.types";
+import getErrorMessageFromQuery from "@/utils/getErrorMessageFromQuery";
 import mergeClassNames from "@/utils/mergeClassnames";
+import Image from "next/image";
 import Link from "next/link";
+import { useParams } from "next/navigation";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 const ProductDetailPage = () => {
   const params = useParams();
+
+  const UpdateProductMutation = useUpdateProduct();
+
+  useEffect(() => {
+    let loadingToast;
+    if (UpdateProductMutation.isPending) {
+      loadingToast = toast.info("Updating product...", { autoClose: 9000 });
+    } else if (UpdateProductMutation.isSuccess && UpdateProductMutation.data) {
+      UpdateProductMutation.reset();
+      toast.dismiss(loadingToast);
+      toast.success("Product updated successfully");
+    } else if (UpdateProductMutation.isError) {
+      toast.error(getErrorMessageFromQuery(UpdateProductMutation.error));
+      UpdateProductMutation.reset();
+    }
+  }, [
+    UpdateProductMutation.isPending,
+    UpdateProductMutation.isSuccess,
+    UpdateProductMutation.isError,
+  ]);
 
   const GetProductDetailQuery = useGetProductDetail(params.id as string);
 
@@ -23,6 +51,26 @@ const ProductDetailPage = () => {
   if (GetProductDetailQuery.isError) return <ErrorPage />;
 
   const productDetail = GetProductDetailQuery.data.payload;
+
+  const onSaveHandler = (value: EditProductImageFormFields) => {
+    const payload: UpdateProductRequestDto & { id: string } = {
+      name: productDetail.name,
+      productType: productDetail.productType.id,
+      processors: productDetail.processors.join(", "),
+      storages: productDetail.storages.join(", "),
+      rams: productDetail.rams.join(", "),
+      keyFeatures: JSON.stringify(productDetail.keyFeatures),
+      ...[value]
+        .map(({ color, colorCode, file }) => ({
+          [`${color}#${colorCode}`]: file,
+        }))
+        .reduce((result, colorFile) => {
+          return { ...result, ...colorFile };
+        }, {}),
+      id: productDetail.id,
+    };
+    UpdateProductMutation.mutate(payload);
+  };
 
   return (
     <MainLayout>
@@ -67,6 +115,7 @@ const ProductDetailPage = () => {
 
         <div className={"w-[90%] flex flex-col mt-4 gap-4"}>
           <h2 className={"font-semibold text-lg mb-2"}>Display Images</h2>
+
           <div className={"w-full grid grid-cols-3 gap-8"}>
             {productDetail.images.map((img, index) => {
               return (
@@ -76,24 +125,33 @@ const ProductDetailPage = () => {
                     "card card-compact w-full bg-base-100 shadow-normal"
                   }
                 >
-                  <figure>
-                    <Image
-                      width={400}
-                      height={300}
-                      className={mergeClassNames("w-full h-auto")}
-                      src={
-                        `${process.env.STORAGE_URL}/${img.imageId}` ||
-                        "/images/placeholder-image.webp"
-                      }
-                      alt={""}
+                  <div className="grid place-items-center h-[400px] group">
+                    <figure className="group-hover:hidden">
+                      <Image
+                        width={400}
+                        height={300}
+                        className={mergeClassNames("w-full h-auto")}
+                        src={
+                          `${process.env.STORAGE_URL}/${img.imageId}/view?project=${process.env.APPWRITE_PROJECT_ID}` ||
+                          "/images/placeholder-image.webp"
+                        }
+                        alt={""}
+                      />
+                    </figure>
+                    <EditProductImageModal
+                      onSave={onSaveHandler}
+                      initialValues={{
+                        color: img.color,
+                        colorCode: img.colorCode.split("#")[1],
+                        imageId: img.imageId,
+                      }}
                     />
-                  </figure>
+                  </div>
                   <div
                     className={
                       "card-body w-full flex-row flex justify-between items-center"
                     }
                   >
-                    {/*<p className={"font-medium"}>Color : {img.color}</p>*/}
                     <div className={"font-medium flex items-center gap-2"}>
                       <div
                         className={"w-4 h-4 rounded-full"}
