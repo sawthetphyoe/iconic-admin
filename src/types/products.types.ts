@@ -1,6 +1,11 @@
+import { ProductColorImage } from "@/store/slices/create-product-form-data.slice";
 import { PageableResponseDto, ResponseDto } from "@/types";
 
 export type ProductImageColorField = `${string}#${string}`;
+
+export type EditProductImageFormFields = Omit<ProductColorImage, "file"> & {
+  file: File | null;
+};
 
 export type CreateProductRequestDto = {
   name: string;
@@ -10,6 +15,8 @@ export type CreateProductRequestDto = {
   rams: string;
   storages: string;
 } & Record<ProductImageColorField, File>;
+
+export type UpdateProductRequestDto = Partial<CreateProductRequestDto>;
 
 export type ProductColorImageDto = {
   color: string;

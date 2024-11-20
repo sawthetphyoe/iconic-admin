@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
 import Form, { OptionType } from "@/components/common/Form";
-import { useForm } from "react-hook-form";
-import { CreateProductRequestDto } from "@/types/products.types";
-import { useDispatch, useSelector } from "react-redux";
+import List from "@/components/common/List";
+import AddProductImageModal from "@/components/products/AddProductImageModal";
+import AddProductSpecificationSection from "@/components/products/AddProductSpecificationSection";
+import useGetAllCollections from "@/hooks/collections/useGetAllCollections";
+import useCreateProduct from "@/hooks/products/useCreateProduct";
 import {
   addKeyFeature,
   addProcessor,
@@ -18,20 +19,19 @@ import {
   updateName,
   updateProductType,
 } from "@/store";
-import useGetAllCollections from "@/hooks/collections/useGetAllCollections";
-import List from "@/components/common/List";
-import AddProductSpecificationSection from "@/components/products/AddProductSpecificationSection";
-import { useRouter } from "next/navigation";
-import AddProductImageModal from "@/components/products/AddProductImageModal";
-import Image from "next/image";
-import mergeClassNames from "@/utils/mergeClassnames";
 import {
   CreateProductRequestStoreType,
   ProductColorImage,
 } from "@/store/slices/create-product-form-data.slice";
-import useCreateProduct from "@/hooks/products/useCreateProduct";
-import { toast } from "react-toastify";
+import { CreateProductRequestDto } from "@/types/products.types";
 import getErrorMessageFromQuery from "@/utils/getErrorMessageFromQuery";
+import mergeClassNames from "@/utils/mergeClassnames";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 type ProductCreateFormField = CreateProductRequestStoreType;
 

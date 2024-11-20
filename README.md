@@ -1,5 +1,11 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Live Links 🚀
+
+- [iCONIC Server](https://iconic-be.vercel.app/) <- [Repo📘](https://github.com/sawthetphyoe/iconic-be)
+- [iCONIC Admin](https://iconic-admin.vercel.app/) <- [Repo📘](https://github.com/sawthetphyoe/iconic-admin)
+- [iCONIC Client](https://iconic-frontend.vercel.app//) <- [Repo📘](https://github.com/anbehindY/iconic-frontend)
+
 ## Getting Started
 
 First, run the development server:

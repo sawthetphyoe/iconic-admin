@@ -1,17 +1,17 @@
 "use client";
 
-import React from "react";
-import { useSearchParams } from "next/navigation";
-import MainLayout from "@/components/layout/MainLayout";
-import Breadcrumbs from "@/components/common/Breadcrumbs";
-import useGetProductVariantDetails from "@/hooks/products/useGetProductVariantDetails";
-import LoadingPage from "@/app/loading";
 import ErrorPage from "@/app/error";
-import PageTitle from "@/components/common/PageTitle";
-import Image from "next/image";
+import LoadingPage from "@/app/loading";
+import Breadcrumbs from "@/components/common/Breadcrumbs";
 import List from "@/components/common/List";
+import PageTitle from "@/components/common/PageTitle";
+import MainLayout from "@/components/layout/MainLayout";
 import useGetInventories from "@/hooks/inventory/useGetInventories";
+import useGetProductVariantDetails from "@/hooks/products/useGetProductVariantDetails";
+import Image from "next/image";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+import React from "react";
 
 const InventoryProductVariantPage: React.FC = () => {
   const searchParams = useSearchParams();
@@ -63,7 +63,10 @@ const InventoryProductVariantPage: React.FC = () => {
           <div className={"flex items-center gap-16"}>
             <Image
               className={"rounded-lg shadow-normal"}
-              src={`${process.env.STORAGE_URL}/${productDetails.image.imageId}`}
+              src={
+                `${process.env.STORAGE_URL}/${productDetails.image.imageId}/view?project=${process.env.APPWRITE_PROJECT_ID}` ||
+                "/images/placeholder-image.webp"
+              }
               alt={productDetails.product.name}
               width={400}
               height={250}
